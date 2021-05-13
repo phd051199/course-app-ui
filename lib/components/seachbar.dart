@@ -14,7 +14,9 @@ class SearchBar extends StatelessWidget {
         alignment: Alignment.center,
         height: 48,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10), color: Color(0xffFFF1DC)),
+          borderRadius: BorderRadius.circular(10),
+          color: Color(0xffFFF1DC),
+        ),
         child: Row(
           children: [
             Padding(
