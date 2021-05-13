@@ -10,7 +10,7 @@ class CoursesList extends StatelessWidget {
       padding: const EdgeInsets.only(top: 17),
       child: SingleChildScrollView(
         child: SizedBox(
-          height: 340,
+          height: 330,
           child: ListView(
             scrollDirection: Axis.horizontal,
             children: [

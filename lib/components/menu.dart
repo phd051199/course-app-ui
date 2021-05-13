@@ -11,34 +11,32 @@ class MenuDrawer extends StatelessWidget {
     return Drawer(
       child: Container(
         color: primaryBGColor,
-        child: Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 79, left: 24),
-                child: Text(
-                  'Menu',
-                  style: GoogleFonts.getFont(
-                    'Montserrat',
-                    fontSize: 24,
-                    fontWeight: FontWeight.w700,
-                    color: Color(0xffFDF1DE),
-                  ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 79, left: 24),
+              child: Text(
+                'Menu',
+                style: GoogleFonts.getFont(
+                  'Montserrat',
+                  fontSize: 24,
+                  fontWeight: FontWeight.w700,
+                  color: Color(0xffFDF1DE),
                 ),
               ),
-              SizedBox(height: 24),
-              DrawerListTile(
-                title: 'Home',
-              ),
-              DrawerListTile(
-                title: 'My Courses',
-              ),
-              DrawerListTile(
-                title: 'Setting',
-              ),
-            ],
-          ),
+            ),
+            SizedBox(height: 24),
+            DrawerListTile(
+              title: 'Home',
+            ),
+            DrawerListTile(
+              title: 'My Courses',
+            ),
+            DrawerListTile(
+              title: 'Setting',
+            ),
+          ],
         ),
       ),
     );

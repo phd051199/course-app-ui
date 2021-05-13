@@ -8,8 +8,11 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   const HomeAppBar({
     Key key,
     this.onPressed,
+    this.title,
   }) : super(key: key);
   final Function onPressed;
+  final String title;
+
   @override
   Size get preferredSize => const Size.fromHeight(55);
 
@@ -26,7 +29,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
         onPressed: onPressed,
       ),
       title: Text(
-        'Hi, cháu ông dev 👋',
+        title ?? '',
         style: GoogleFonts.getFont(
           'Montserrat',
           color: primaryColor,
@@ -38,7 +41,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         Padding(
           padding: const EdgeInsets.only(right: 24.0),
-          child: GestureDetector(
+          child: InkWell(
             onTap: () => Get.to(() => ProfileScreen()),
             child: Image(
               image: AssetImage('assets/images/avatar.png'),

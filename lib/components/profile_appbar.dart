@@ -24,9 +24,12 @@ class ProfileAppBar extends StatelessWidget {
             : null,
       ),
       backgroundColor: primaryBGColor,
-      leading: IconButton(
-        icon: Icon(Icons.arrow_back_rounded),
-        onPressed: () => Get.back(),
+      leading: Padding(
+        padding: const EdgeInsets.only(left: 12),
+        child: IconButton(
+          icon: Icon(Icons.arrow_back_rounded),
+          onPressed: () => Get.back(),
+        ),
       ),
       title: Text(
         'Profile',

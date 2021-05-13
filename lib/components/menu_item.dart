@@ -5,14 +5,17 @@ class DrawerListTile extends StatelessWidget {
   const DrawerListTile({
     Key key,
     this.title,
+    this.menuItemClicked,
   }) : super(key: key);
   final String title;
+  final Function menuItemClicked;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 8),
       child: ListTile(
-        onTap: () {},
+        onTap: menuItemClicked,
         horizontalTitleGap: 0.0,
         title: Text(
           title,

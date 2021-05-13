@@ -1,18 +1,18 @@
 import 'package:course_app/components/home_appbar.dart';
-import 'package:course_app/components/home_body.dart';
 import 'package:course_app/components/menu.dart';
+import 'package:course_app/utils/constants.dart';
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatefulWidget {
-  HomeScreen({Key key}) : super(key: key);
+class PlayerScreen extends StatefulWidget {
+  PlayerScreen({Key key}) : super(key: key);
 
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  _PlayerScreenState createState() => _PlayerScreenState();
 }
 
-GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
+var scaffoldKey = new GlobalKey<ScaffoldState>();
 
-class _HomeScreenState extends State<HomeScreen> {
+class _PlayerScreenState extends State<PlayerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,9 +20,10 @@ class _HomeScreenState extends State<HomeScreen> {
       drawer: MenuDrawer(),
       appBar: HomeAppBar(
         onPressed: () => scaffoldKey.currentState.openDrawer(),
-        title: 'Hi, cháu ông dev 👋',
       ),
-      body: Body(),
+      body: Container(
+        color: primaryBGColor,
+      ),
     );
   }
 }
