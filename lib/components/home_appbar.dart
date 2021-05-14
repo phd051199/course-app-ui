@@ -45,10 +45,16 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
             onTap: () => Get.to(
               () => ProfileScreen(),
             ),
-            child: Image(
-              image: AssetImage('assets/images/avatar.png'),
-              height: 50,
-              width: 50,
+            child: Container(
+              // color: Colors.red,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(45),
+              ),
+              child: Image(
+                image: AssetImage('assets/images/avatar.png'),
+                height: 50,
+                width: 50,
+              ),
             ),
           ),
         ),

@@ -37,13 +37,13 @@ class CourseCard extends StatelessWidget {
               decoration: BoxDecoration(
                 color: primaryBGColor,
                 borderRadius: BorderRadius.circular(12),
-                // boxShadow: [
-                //   BoxShadow(
-                //     blurRadius: 5,
-                //     color: secondColor.withOpacity(0.1),
-                //     offset: Offset(0, 3),
-                //   )
-                // ], // Make rounded corner of border
+                boxShadow: [
+                  BoxShadow(
+                    blurRadius: 5,
+                    color: secondColor.withOpacity(0.1),
+                    offset: Offset(0, 5),
+                  )
+                ],
                 gradient: LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,

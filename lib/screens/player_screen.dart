@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:video_player/video_player.dart';
+import 'package:wakelock/wakelock.dart';
 
 import '../components/home_appbar.dart';
 import '../utils/constants.dart';
@@ -15,11 +16,11 @@ class PlayerScreen extends StatefulWidget {
 }
 
 class _PlayerScreenState extends State<PlayerScreen> {
-  VideoPlayerController _controller;
+  VideoPlayerController controller;
   int playbackTime = 0;
 
   void initPlayer() {
-    _controller = VideoPlayerController.network(widget.videoLink)
+    controller = VideoPlayerController.network(widget.videoLink)
       ..setLooping(true)
       ..initialize().then((_) {
         setState(() {});
@@ -30,11 +31,12 @@ class _PlayerScreenState extends State<PlayerScreen> {
   void initState() {
     super.initState();
     initPlayer();
-    _controller.addListener(() {
+    controller.addListener(() {
       setState(() {
-        playbackTime = _controller.value.position.inSeconds;
+        playbackTime = controller.value.position.inSeconds;
       });
     });
+    controller.value.isPlaying ? Wakelock.disable() : Wakelock.enable();
   }
 
   @override
@@ -48,131 +50,183 @@ class _PlayerScreenState extends State<PlayerScreen> {
           Container(
             color: primaryBGColor,
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 18, vertical: 4),
-                child: Container(
-                  child: Text(
-                    'Course – Simple Flutter App',
-                    style: GoogleFonts.getFont(
-                      'Montserrat',
-                      fontWeight: FontWeight.w400,
-                      fontSize: 16,
-                      color: Colors.white,
+          SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 18, vertical: 4),
+                  child: Container(
+                    child: Text(
+                      'Course – Simple Flutter App',
+                      style: GoogleFonts.getFont(
+                        'Montserrat',
+                        fontWeight: FontWeight.w400,
+                        fontSize: 16,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                child: Container(
-                  height: 220,
-                  child: Stack(
-                    children: [
-                      _controller.value.isInitialized
-                          ? AspectRatio(
-                              aspectRatio: _controller.value.aspectRatio,
-                              child: VideoPlayer(_controller),
-                            )
-                          : Container(
-                              decoration: BoxDecoration(
-                                color: Colors.white24,
-                                borderRadius: BorderRadius.circular(15),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                  child: Container(
+                    height: 220,
+                    child: Stack(
+                      children: [
+                        controller.value.isInitialized
+                            ? AspectRatio(
+                                aspectRatio: controller.value.aspectRatio,
+                                child: VideoPlayer(controller),
+                              )
+                            : Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.white24,
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
                               ),
+                        Align(
+                          alignment: Alignment(0, 0.9),
+                          child: Container(
+                            height: 30,
+                            width: 220 / 0.6,
+                            decoration: BoxDecoration(
+                              color: Colors.white12,
+                              borderRadius: BorderRadius.circular(12),
                             ),
-                      Align(
-                        alignment: Alignment(0, 0.9),
-                        child: Container(
-                          height: 35,
-                          width: 220 / 0.6,
-                          decoration: BoxDecoration(
-                            color: Colors.white24,
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Row(
-                            children: [
-                              ControllerButton(
-                                  onControllerPress: () {
-                                    setState(
-                                      () {
-                                        _controller.value.isPlaying
-                                            ? _controller.pause()
-                                            : _controller.play();
-                                      },
-                                    );
-                                  },
-                                  icon: _controller.value.isPlaying
-                                      ? Icons.pause
-                                      : Icons.play_arrow),
-                              Expanded(
-                                flex: 9,
-                                child: SliderTheme(
-                                  data: SliderThemeData(
-                                    thumbShape: RoundSliderThumbShape(
-                                      elevation: 0,
-                                    ),
-                                    trackHeight: 18,
-                                    thumbColor: secondaryColor,
-                                    activeTrackColor: secondaryColor,
-                                    inactiveTrackColor: Colors.white30,
-                                  ),
-                                  child: Slider(
-                                    min: 0,
-                                    max: _controller.value.duration.inSeconds
-                                        .toDouble(),
-                                    value: playbackTime.toDouble(),
-                                    onChanged: (v) {
-                                      _controller.seekTo(
-                                        Duration(
-                                          seconds: v.toInt(),
-                                        ),
+                            child: Row(
+                              children: [
+                                ControllerButton(
+                                    onControllerPress: () {
+                                      setState(
+                                        () {
+                                          controller.value.isPlaying
+                                              ? controller.pause()
+                                              : controller.play();
+                                        },
                                       );
                                     },
+                                    icon: controller.value.isPlaying
+                                        ? Icons.pause
+                                        : Icons.play_arrow),
+                                Expanded(
+                                  flex: 9,
+                                  child: SliderTheme(
+                                    data: SliderThemeData(
+                                      thumbShape: RoundSliderThumbShape(
+                                        elevation: 0,
+                                      ),
+                                      trackHeight: 18,
+                                      thumbColor: secondaryColor,
+                                      activeTrackColor: secondaryColor,
+                                      inactiveTrackColor: Colors.white30,
+                                    ),
+                                    child: Slider(
+                                      min: 0,
+                                      max: controller.value.duration.inSeconds
+                                          .toDouble(),
+                                      value: playbackTime.toDouble(),
+                                      onChanged: (v) {
+                                        controller.seekTo(
+                                          Duration(
+                                            seconds: v.toInt(),
+                                          ),
+                                        );
+                                      },
+                                    ),
                                   ),
                                 ),
-                              ),
-                              Expanded(
-                                flex: 4,
-                                child: Row(
-                                  children: [
-                                    ControllerButton(
-                                      icon: Icons.volume_up,
-                                    ),
-                                    ControllerButton(
-                                      icon: Icons.hd,
-                                    ),
-                                    ControllerButton(
-                                      icon: Icons.fullscreen,
-                                    ),
-                                  ],
-                                ),
-                              )
-                            ],
+                                Expanded(
+                                  flex: 4,
+                                  child: Row(
+                                    children: [
+                                      ControllerButton(
+                                        icon: Icons.volume_up,
+                                      ),
+                                      ControllerButton(
+                                        icon: Icons.hd,
+                                      ),
+                                      ControllerButton(
+                                        icon: Icons.fullscreen,
+                                      ),
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  ReactButton(
-                    icon: Icons.thumb_up_alt_outlined,
-                    count: 123,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    ReactButton(
+                      icon: Icons.thumb_up_alt_outlined,
+                      count: 123,
+                    ),
+                    ReactButton(
+                      icon: Icons.thumb_down_alt_outlined,
+                      count: 10,
+                    ),
+                  ],
+                ),
+                LanguageDropdown(),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      color: Color(0xff484848),
+                    ),
+                    height: 300,
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          SubTitle(
+                            time: '0:02',
+                            sub: "Sorry can't answer your call at the",
+                          ),
+                          SubTitle(
+                            time: '0:02',
+                            sub: "moment",
+                          ),
+                          SubTitle(
+                            time: '1:02',
+                            sub: "Cause she really",
+                          ),
+                          SubTitle(
+                            time: '2:02',
+                            sub: "Got me focused",
+                          ),
+                          SubTitle(
+                            time: '3:02',
+                            sub: "On her lips wow",
+                          ),
+                          SubTitle(
+                            time: '4:02',
+                            sub: "Sorry can't answer your call",
+                          ),
+                          SubTitle(
+                            time: '5:02',
+                            sub: "Sorry can't answer your call",
+                          ),
+                          SubTitle(
+                            time: '6:02',
+                            sub: "Sorry can't answer your call",
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
-                  ReactButton(
-                    icon: Icons.thumb_down_alt_outlined,
-                    count: 10,
-                  ),
-                ],
-              ),
-            ],
+                )
+              ],
+            ),
           ),
         ],
       ),
@@ -182,7 +236,88 @@ class _PlayerScreenState extends State<PlayerScreen> {
   @override
   void dispose() {
     super.dispose();
-    _controller.dispose();
+    controller.dispose();
+  }
+}
+
+class SubTitle extends StatelessWidget {
+  const SubTitle({
+    Key key,
+    this.time,
+    this.sub,
+  }) : super(key: key);
+  final String time, sub;
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 48,
+      child: ListTile(
+        onTap: () {},
+        leading: Text(
+          time,
+          style: GoogleFonts.getFont(
+            'Montserrat',
+            fontWeight: FontWeight.w300,
+            fontSize: 16,
+            color: Colors.white,
+          ),
+        ),
+        title: Text(
+          sub,
+          style: GoogleFonts.getFont(
+            'Montserrat',
+            fontWeight: FontWeight.w300,
+            fontSize: 16,
+            color: Colors.white,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class LanguageDropdown extends StatelessWidget {
+  const LanguageDropdown({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12),
+      child: DropdownButton(
+        dropdownColor: primaryBGColor,
+        underline: SizedBox(),
+        value: 1,
+        items: [
+          DropdownMenuItem(
+            child: Text(
+              'English',
+              style: GoogleFonts.getFont(
+                'Montserrat',
+                fontWeight: FontWeight.w500,
+                fontSize: 14,
+                color: Colors.white,
+              ),
+            ),
+            value: 1,
+          ),
+          DropdownMenuItem(
+            child: Text(
+              'Tiếng việt',
+              style: GoogleFonts.getFont(
+                'Montserrat',
+                fontWeight: FontWeight.w500,
+                fontSize: 14,
+                color: Colors.white,
+              ),
+            ),
+            value: 2,
+          ),
+        ],
+        onChanged: (value) {},
+      ),
+    );
   }
 }
 
