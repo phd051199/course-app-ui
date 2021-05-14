@@ -7,7 +7,8 @@ import '../components/home_appbar.dart';
 import '../utils/constants.dart';
 
 class PlayerScreen extends StatefulWidget {
-  PlayerScreen({Key key}) : super(key: key);
+  PlayerScreen({Key key, this.videoLink}) : super(key: key);
+  final String videoLink;
 
   @override
   _PlayerScreenState createState() => _PlayerScreenState();
@@ -15,15 +16,25 @@ class PlayerScreen extends StatefulWidget {
 
 class _PlayerScreenState extends State<PlayerScreen> {
   VideoPlayerController _controller;
+  int playbackTime = 0;
+
+  void initPlayer() {
+    _controller = VideoPlayerController.network(widget.videoLink)
+      ..setLooping(true)
+      ..initialize().then((_) {
+        setState(() {});
+      });
+  }
 
   @override
   void initState() {
     super.initState();
-    _controller = VideoPlayerController.network(
-        'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4')
-      ..initialize().then((_) {
-        setState(() {});
+    initPlayer();
+    _controller.addListener(() {
+      setState(() {
+        playbackTime = _controller.value.position.inSeconds;
       });
+    });
   }
 
   @override
@@ -58,34 +69,94 @@ class _PlayerScreenState extends State<PlayerScreen> {
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                child: Stack(
-                  children: [
-                    Container(
-                      height: 240,
-                      decoration: BoxDecoration(
-                        color: Colors.white24,
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      child: _controller.value.isInitialized
+                child: Container(
+                  height: 220,
+                  child: Stack(
+                    children: [
+                      _controller.value.isInitialized
                           ? AspectRatio(
                               aspectRatio: _controller.value.aspectRatio,
                               child: VideoPlayer(_controller),
                             )
-                          : Container(),
-                    ),
-                    Align(
-                      alignment: Alignment.bottomLeft,
-                      child: Text(
-                        'Course – Simple Flutter App',
-                        style: GoogleFonts.getFont(
-                          'Montserrat',
-                          fontWeight: FontWeight.w400,
-                          fontSize: 16,
-                          color: Colors.white,
+                          : Container(
+                              decoration: BoxDecoration(
+                                color: Colors.white24,
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                            ),
+                      Align(
+                        alignment: Alignment(0, 0.9),
+                        child: Container(
+                          height: 35,
+                          width: 220 / 0.6,
+                          decoration: BoxDecoration(
+                            color: Colors.white24,
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Row(
+                            children: [
+                              ControllerButton(
+                                  onControllerPress: () {
+                                    setState(
+                                      () {
+                                        _controller.value.isPlaying
+                                            ? _controller.pause()
+                                            : _controller.play();
+                                      },
+                                    );
+                                  },
+                                  icon: _controller.value.isPlaying
+                                      ? Icons.pause
+                                      : Icons.play_arrow),
+                              Expanded(
+                                flex: 9,
+                                child: SliderTheme(
+                                  data: SliderThemeData(
+                                    thumbShape: RoundSliderThumbShape(
+                                      elevation: 0,
+                                    ),
+                                    trackHeight: 18,
+                                    thumbColor: secondaryColor,
+                                    activeTrackColor: secondaryColor,
+                                    inactiveTrackColor: Colors.white30,
+                                  ),
+                                  child: Slider(
+                                    min: 0,
+                                    max: _controller.value.duration.inSeconds
+                                        .toDouble(),
+                                    value: playbackTime.toDouble(),
+                                    onChanged: (v) {
+                                      _controller.seekTo(
+                                        Duration(
+                                          seconds: v.toInt(),
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                flex: 4,
+                                child: Row(
+                                  children: [
+                                    ControllerButton(
+                                      icon: Icons.volume_up,
+                                    ),
+                                    ControllerButton(
+                                      icon: Icons.hd,
+                                    ),
+                                    ControllerButton(
+                                      icon: Icons.fullscreen,
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
               Row(
@@ -100,25 +171,10 @@ class _PlayerScreenState extends State<PlayerScreen> {
                     count: 10,
                   ),
                 ],
-              )
+              ),
             ],
           ),
         ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: secondaryColor,
-        onPressed: () {
-          setState(
-            () {
-              _controller.value.isPlaying
-                  ? _controller.pause()
-                  : _controller.play();
-            },
-          );
-        },
-        child: Icon(
-          _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
-        ),
       ),
     );
   }
@@ -127,6 +183,34 @@ class _PlayerScreenState extends State<PlayerScreen> {
   void dispose() {
     super.dispose();
     _controller.dispose();
+  }
+}
+
+class ControllerButton extends StatelessWidget {
+  const ControllerButton({
+    Key key,
+    this.icon,
+    this.onControllerPress,
+  }) : super(key: key);
+  final IconData icon;
+  final Function onControllerPress;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 4),
+      child: InkWell(
+        onTap: onControllerPress,
+        child: Container(
+          width: 25,
+          height: double.infinity,
+          child: Icon(
+            icon,
+            color: Colors.white,
+          ),
+        ),
+      ),
+    );
   }
 }
 

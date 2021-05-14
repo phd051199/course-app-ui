@@ -20,29 +20,22 @@ class SearchBar extends StatelessWidget {
         child: Row(
           children: [
             Padding(
-              padding: const EdgeInsets.only(left: 18),
+              padding: const EdgeInsets.symmetric(horizontal: 18),
               child: Icon(
                 Icons.search,
                 color: Color(0xfff2A3447),
               ),
             ),
             Expanded(
-              child: Padding(
-                padding: const EdgeInsets.only(
-                  top: 24,
-                  bottom: 4,
-                  left: 20,
-                ),
-                child: TextField(
-                  decoration: InputDecoration(
-                    hintText: 'Search course',
-                    hintStyle: GoogleFonts.getFont(
-                      'Montserrat',
-                      fontWeight: FontWeight.w400,
-                      fontSize: 16,
-                    ),
-                    border: InputBorder.none,
+              child: TextField(
+                decoration: InputDecoration(
+                  hintText: 'Search course',
+                  hintStyle: GoogleFonts.getFont(
+                    'Montserrat',
+                    fontWeight: FontWeight.w400,
+                    fontSize: 16,
                   ),
+                  border: InputBorder.none,
                 ),
               ),
             ),

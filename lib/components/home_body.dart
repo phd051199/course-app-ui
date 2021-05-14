@@ -27,11 +27,12 @@ class Body extends StatelessWidget {
                     ),
                     CoursesList(),
                     Padding(
-                        padding:
-                            const EdgeInsets.only(top: 38, left: 25, right: 22),
-                        child: MainTitle(
-                          title: 'Courses',
-                        )),
+                      padding:
+                          const EdgeInsets.only(top: 38, left: 25, right: 22),
+                      child: MainTitle(
+                        title: 'Courses',
+                      ),
+                    ),
                     CoursesList(),
                   ],
                 ),

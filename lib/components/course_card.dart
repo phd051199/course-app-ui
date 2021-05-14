@@ -11,9 +11,10 @@ class CourseCard extends StatelessWidget {
     this.author,
     this.firstColor,
     this.secondColor,
+    this.videoLink,
   }) : super(key: key);
 
-  final String title, author;
+  final String title, author, videoLink;
   final Color firstColor, secondColor;
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,11 @@ class CourseCard extends StatelessWidget {
       child: Material(
         type: MaterialType.transparency,
         child: InkWell(
-          onTap: () => Get.to(() => PlayerScreen()),
+          onTap: () => Get.to(
+            () => PlayerScreen(
+              videoLink: videoLink,
+            ),
+          ),
           child: Card(
             color: primaryBGColor,
             elevation: 0,

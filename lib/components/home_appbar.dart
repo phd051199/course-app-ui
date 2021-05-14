@@ -42,7 +42,9 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
         Padding(
           padding: const EdgeInsets.only(right: 24.0),
           child: InkWell(
-            onTap: () => Get.to(() => ProfileScreen()),
+            onTap: () => Get.to(
+              () => ProfileScreen(),
+            ),
             child: Image(
               image: AssetImage('assets/images/avatar.png'),
               height: 50,
