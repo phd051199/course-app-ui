@@ -41,10 +41,16 @@ class _PlayerScreenState extends State<PlayerScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final isLandScape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
+
     return Scaffold(
-      appBar: HomeAppBar(
-        onPressed: () => Get.back(),
-      ),
+      appBar: !isLandScape
+          ? HomeAppBar(
+              onPressed: () => Get.back(),
+            )
+          : null,
       body: Stack(
         children: [
           Container(
@@ -71,9 +77,9 @@ class _PlayerScreenState extends State<PlayerScreen> {
                 ),
                 Padding(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                   child: Container(
-                    height: 220,
+                    height: size.width * 0.54,
                     child: Stack(
                       children: [
                         controller.value.isInitialized
@@ -91,12 +97,13 @@ class _PlayerScreenState extends State<PlayerScreen> {
                           alignment: Alignment(0, 0.9),
                           child: Container(
                             height: 30,
-                            width: 220 / 0.6,
+                            width: size.width * 0.92,
                             decoration: BoxDecoration(
                               color: Colors.white12,
                               borderRadius: BorderRadius.circular(12),
                             ),
                             child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 ControllerButton(
                                     onControllerPress: () {
@@ -111,8 +118,8 @@ class _PlayerScreenState extends State<PlayerScreen> {
                                     icon: controller.value.isPlaying
                                         ? Icons.pause
                                         : Icons.play_arrow),
-                                Expanded(
-                                  flex: 9,
+                                Container(
+                                  width: size.width * 0.58,
                                   child: SliderTheme(
                                     data: SliderThemeData(
                                       thumbShape: RoundSliderThumbShape(
@@ -138,22 +145,19 @@ class _PlayerScreenState extends State<PlayerScreen> {
                                     ),
                                   ),
                                 ),
-                                Expanded(
-                                  flex: 4,
-                                  child: Row(
-                                    children: [
-                                      ControllerButton(
-                                        icon: Icons.volume_up,
-                                      ),
-                                      ControllerButton(
-                                        icon: Icons.hd,
-                                      ),
-                                      ControllerButton(
-                                        icon: Icons.fullscreen,
-                                      ),
-                                    ],
-                                  ),
-                                )
+                                Row(
+                                  children: [
+                                    ControllerButton(
+                                      icon: Icons.volume_up,
+                                    ),
+                                    ControllerButton(
+                                      icon: Icons.hd,
+                                    ),
+                                    ControllerButton(
+                                      icon: Icons.fullscreen,
+                                    ),
+                                  ],
+                                ),
                               ],
                             ),
                           ),
@@ -185,43 +189,41 @@ class _PlayerScreenState extends State<PlayerScreen> {
                       color: Color(0xff484848),
                     ),
                     height: 300,
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          SubTitle(
-                            time: '0:02',
-                            sub: "Sorry can't answer your call at the",
-                          ),
-                          SubTitle(
-                            time: '0:02',
-                            sub: "moment",
-                          ),
-                          SubTitle(
-                            time: '1:02',
-                            sub: "Cause she really",
-                          ),
-                          SubTitle(
-                            time: '2:02',
-                            sub: "Got me focused",
-                          ),
-                          SubTitle(
-                            time: '3:02',
-                            sub: "On her lips wow",
-                          ),
-                          SubTitle(
-                            time: '4:02',
-                            sub: "Sorry can't answer your call",
-                          ),
-                          SubTitle(
-                            time: '5:02',
-                            sub: "Sorry can't answer your call",
-                          ),
-                          SubTitle(
-                            time: '6:02',
-                            sub: "Sorry can't answer your call",
-                          ),
-                        ],
-                      ),
+                    child: ListView(
+                      children: [
+                        SubTitle(
+                          time: '0:02',
+                          sub: "Sorry can't answer your call at the",
+                        ),
+                        SubTitle(
+                          time: '0:02',
+                          sub: "moment",
+                        ),
+                        SubTitle(
+                          time: '1:02',
+                          sub: "Cause she really",
+                        ),
+                        SubTitle(
+                          time: '2:02',
+                          sub: "Got me focused",
+                        ),
+                        SubTitle(
+                          time: '3:02',
+                          sub: "On her lips wow",
+                        ),
+                        SubTitle(
+                          time: '4:02',
+                          sub: "Sorry can't answer your call",
+                        ),
+                        SubTitle(
+                          time: '5:02',
+                          sub: "Sorry can't answer your call",
+                        ),
+                        SubTitle(
+                          time: '6:02',
+                          sub: "Sorry can't answer your call",
+                        ),
+                      ],
                     ),
                   ),
                 )

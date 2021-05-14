@@ -41,9 +41,9 @@ class CourseCard extends StatelessWidget {
                   BoxShadow(
                     blurRadius: 5,
                     color: secondColor.withOpacity(0.1),
-                    offset: Offset(0, 5),
+                    offset: Offset(0, 3),
                   )
-                ],
+                ], // Make rounded corner of border
                 gradient: LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
