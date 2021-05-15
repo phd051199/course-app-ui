@@ -2,7 +2,6 @@ import 'package:course_app/screens/profile_screen.dart';
 import 'package:course_app/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   const HomeAppBar({
@@ -30,10 +29,9 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       title: Text(
         title ?? '',
-        style: GoogleFonts.getFont(
-          'Montserrat',
+        style: TextStyle(
           color: primaryColor,
-          fontWeight: FontWeight.w600,
+          fontWeight: FontWeight.w700,
           fontSize: 20,
         ),
       ),

@@ -2,7 +2,6 @@ import 'package:course_app/components/course_list.dart';
 import 'package:course_app/components/main_title.dart';
 import 'package:course_app/utils/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class ProfileBody extends StatelessWidget {
   const ProfileBody({
@@ -26,10 +25,9 @@ class ProfileBody extends StatelessWidget {
               padding: const EdgeInsets.only(top: 16),
               child: Text(
                 'Cháu ông dev',
-                style: GoogleFonts.getFont(
-                  'Montserrat',
+                style: TextStyle(
                   color: primaryColor,
-                  fontWeight: FontWeight.w600,
+                  fontWeight: FontWeight.w700,
                   fontSize: 24,
                 ),
               ),
@@ -38,10 +36,9 @@ class ProfileBody extends StatelessWidget {
               padding: const EdgeInsets.only(top: 6),
               child: Text(
                 '@chauOngDev',
-                style: GoogleFonts.getFont(
-                  'Montserrat',
+                style: TextStyle(
                   color: primaryColor,
-                  fontWeight: FontWeight.w300,
+                  fontWeight: FontWeight.w500,
                   fontSize: 16,
                 ),
               ),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class SearchBar extends StatelessWidget {
   const SearchBar({
@@ -30,9 +29,8 @@ class SearchBar extends StatelessWidget {
               child: TextField(
                 decoration: InputDecoration(
                   hintText: 'Search course',
-                  hintStyle: GoogleFonts.getFont(
-                    'Montserrat',
-                    fontWeight: FontWeight.w400,
+                  hintStyle: TextStyle(
+                    fontWeight: FontWeight.w500,
                     fontSize: 16,
                   ),
                   border: InputBorder.none,

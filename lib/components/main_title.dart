@@ -1,6 +1,5 @@
 import 'package:course_app/utils/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class MainTitle extends StatelessWidget {
   const MainTitle({
@@ -16,20 +15,18 @@ class MainTitle extends StatelessWidget {
       children: [
         Text(
           title,
-          style: GoogleFonts.getFont(
-            'Montserrat',
+          style: TextStyle(
             fontSize: 20,
-            fontWeight: FontWeight.w600,
+            fontWeight: FontWeight.w700,
             color: primaryColor,
           ),
         ),
         Text(
           'View all',
-          style: GoogleFonts.getFont(
-            'Montserrat',
+          style: TextStyle(
             fontSize: 16,
             color: Color(0xffFFB347),
-            fontWeight: FontWeight.w400,
+            fontWeight: FontWeight.w500,
           ),
         ),
       ],

@@ -1,6 +1,6 @@
 import 'package:course_app/components/course_list.dart';
 import 'package:course_app/components/main_title.dart';
-import 'package:course_app/components/seachbar.dart';
+import 'package:course_app/components/search_field.dart';
 import 'package:course_app/utils/constants.dart';
 import 'package:flutter/material.dart';
 

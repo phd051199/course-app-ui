@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class DrawerListTile extends StatelessWidget {
   const DrawerListTile({
@@ -19,10 +18,9 @@ class DrawerListTile extends StatelessWidget {
         horizontalTitleGap: 0.0,
         title: Text(
           title,
-          style: GoogleFonts.getFont(
-            'Montserrat',
+          style: TextStyle(
             fontSize: 20,
-            fontWeight: FontWeight.w400,
+            fontWeight: FontWeight.w500,
             color: Colors.white,
           ),
         ),

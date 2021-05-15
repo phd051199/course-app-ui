@@ -2,7 +2,6 @@ import 'package:course_app/screens/player_screen.dart';
 import 'package:course_app/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class CourseCard extends StatelessWidget {
   const CourseCard({
@@ -25,6 +24,7 @@ class CourseCard extends StatelessWidget {
         child: InkWell(
           onTap: () => Get.to(
             () => PlayerScreen(
+              title: title,
               videoLink: videoLink,
             ),
           ),
@@ -43,7 +43,7 @@ class CourseCard extends StatelessWidget {
                     color: secondColor.withOpacity(0.1),
                     offset: Offset(0, 3),
                   )
-                ], // Make rounded corner of border
+                ],
                 gradient: LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
@@ -77,8 +77,7 @@ class CourseCard extends StatelessWidget {
                       alignment: Alignment.center,
                       child: Text(
                         title,
-                        style: GoogleFonts.getFont(
-                          'Montserrat',
+                        style: TextStyle(
                           fontWeight: FontWeight.w700,
                           fontSize: 18,
                           color: Colors.white,
@@ -99,8 +98,7 @@ class CourseCard extends StatelessWidget {
                             padding: const EdgeInsets.only(left: 10),
                             child: Text(
                               author,
-                              style: GoogleFonts.getFont(
-                                'Montserrat',
+                              style: TextStyle(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 12,
                                 color: Colors.white,
