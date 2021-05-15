@@ -44,7 +44,6 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
               () => ProfileScreen(),
             ),
             child: Container(
-              // color: Colors.red,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(45),
               ),

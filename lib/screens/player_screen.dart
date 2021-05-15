@@ -1,7 +1,9 @@
+import 'package:course_app/components/player_controls.dart';
+import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
-import 'package:wakelock/wakelock.dart';
 
 import '../components/home_appbar.dart';
 import '../utils/constants.dart';
@@ -15,46 +17,24 @@ class PlayerScreen extends StatefulWidget {
 }
 
 class _PlayerScreenState extends State<PlayerScreen> {
-  VideoPlayerController controller;
-  int playbackTime = 0;
-
-  void initPlayer() {
-    controller = VideoPlayerController.network(widget.videoLink)
-      ..setLooping(true)
-      ..initialize().then((_) {
-        setState(() {});
-      });
-  }
+  FlickManager flickManager;
 
   @override
   void initState() {
     super.initState();
-    initPlayer();
-    controller.addListener(() {
-      setState(() {
-        playbackTime = controller.value.position.inSeconds;
-      });
-    });
-    controller.value.isPlaying ? Wakelock.disable() : Wakelock.enable();
+    flickManager = FlickManager(
+        videoPlayerController: VideoPlayerController.network(widget.videoLink));
   }
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     final isLandScape =
         MediaQuery.of(context).orientation == Orientation.landscape;
 
     return Scaffold(
-      appBar: !isLandScape
-          ? HomeAppBar(
-              onPressed: () => Get.back(),
-            )
-          : null,
+      appBar: HomeAppBar(onPressed: () => Get.back()),
       body: Stack(
         children: [
-          Container(
-            color: primaryBGColor,
-          ),
           SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -75,88 +55,22 @@ class _PlayerScreenState extends State<PlayerScreen> {
                 ),
                 Padding(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                      const EdgeInsets.symmetric(horizontal: 18, vertical: 4),
                   child: Container(
-                    height: size.width * 0.54,
                     child: Stack(
                       children: [
-                        controller.value.isInitialized
-                            ? AspectRatio(
-                                aspectRatio: controller.value.aspectRatio,
-                                child: VideoPlayer(controller),
-                              )
-                            : Container(
-                                decoration: BoxDecoration(
-                                  color: Colors.white24,
-                                  borderRadius: BorderRadius.circular(15),
-                                ),
-                              ),
-                        Align(
-                          alignment: Alignment(0, 0.9),
-                          child: Container(
-                            height: 30,
-                            width: size.width * 0.92,
-                            decoration: BoxDecoration(
-                              color: Colors.white12,
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                ControllerButton(
-                                    onControllerPress: () {
-                                      setState(
-                                        () {
-                                          controller.value.isPlaying
-                                              ? controller.pause()
-                                              : controller.play();
-                                        },
-                                      );
-                                    },
-                                    icon: controller.value.isPlaying
-                                        ? Icons.pause
-                                        : Icons.play_arrow),
-                                Container(
-                                  width: size.width * 0.58,
-                                  child: SliderTheme(
-                                    data: SliderThemeData(
-                                      thumbShape: RoundSliderThumbShape(
-                                        elevation: 0,
-                                      ),
-                                      trackHeight: 18,
-                                      thumbColor: secondaryColor,
-                                      activeTrackColor: secondaryColor,
-                                      inactiveTrackColor: Colors.white30,
-                                    ),
-                                    child: Slider(
-                                      min: 0,
-                                      max: controller.value.duration.inSeconds
-                                          .toDouble(),
-                                      value: playbackTime.toDouble(),
-                                      onChanged: (v) {
-                                        controller.seekTo(
-                                          Duration(
-                                            seconds: v.toInt(),
-                                          ),
-                                        );
-                                      },
-                                    ),
-                                  ),
-                                ),
-                                Row(
-                                  children: [
-                                    ControllerButton(
-                                      icon: Icons.volume_up,
-                                    ),
-                                    ControllerButton(
-                                      icon: Icons.hd,
-                                    ),
-                                    ControllerButton(
-                                      icon: Icons.fullscreen,
-                                    ),
-                                  ],
-                                ),
-                              ],
+                        Container(
+                          height: !isLandScape ? 225 : double.infinity,
+                          child: FlickVideoPlayer(
+                            flickManager: flickManager,
+                            preferredDeviceOrientation: [
+                              DeviceOrientation.landscapeRight,
+                              DeviceOrientation.landscapeLeft,
+                              DeviceOrientation.portraitUp
+                            ],
+                            systemUIOverlay: [],
+                            flickVideoWithControls: FlickVideoWithControls(
+                              controls: LandscapePlayerControls(),
                             ),
                           ),
                         ),
@@ -235,8 +149,8 @@ class _PlayerScreenState extends State<PlayerScreen> {
 
   @override
   void dispose() {
+    flickManager.dispose();
     super.dispose();
-    controller.dispose();
   }
 }
 

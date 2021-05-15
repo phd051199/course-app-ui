@@ -31,7 +31,8 @@ dependencies:
   get: ^4.1.4
   google_fonts: ^2.0.0
   video_player: ^2.1.1
-  wakelock: ^0.5.1+1
+  flick_video_player: ^0.3.1
+  visibility_detector: ^0.2.0
 
 dev_dependencies:
   flutter_test:
