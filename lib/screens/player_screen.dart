@@ -3,9 +3,9 @@ import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:video_player/video_player.dart';
 
-import '../components/home_appbar.dart';
 import '../utils/constants.dart';
 
 class PlayerScreen extends StatefulWidget {
@@ -32,7 +32,25 @@ class _PlayerScreenState extends State<PlayerScreen> {
         MediaQuery.of(context).orientation == Orientation.landscape;
 
     return Scaffold(
-      appBar: HomeAppBar(onPressed: () => Get.back()),
+      appBar: AppBar(
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 12),
+          child: IconButton(
+            icon: Icon(Icons.arrow_back_rounded),
+            onPressed: () => Get.back(),
+          ),
+        ),
+        title: Text(
+          'Home',
+          style: GoogleFonts.getFont(
+            'Montserrat',
+            color: primaryColor,
+            fontWeight: FontWeight.w700,
+            fontSize: 20,
+          ),
+        ),
+        centerTitle: false,
+      ),
       body: Stack(
         children: [
           SingleChildScrollView(
@@ -45,7 +63,8 @@ class _PlayerScreenState extends State<PlayerScreen> {
                   child: Container(
                     child: Text(
                       widget.title,
-                      style: TextStyle(
+                      style: GoogleFonts.getFont(
+                        'Montserrat',
                         fontWeight: FontWeight.w500,
                         fontSize: 16,
                         color: Colors.white,
@@ -169,7 +188,8 @@ class SubTitle extends StatelessWidget {
         onTap: () {},
         leading: Text(
           time,
-          style: TextStyle(
+          style: GoogleFonts.getFont(
+            'Montserrat',
             fontWeight: FontWeight.w500,
             fontSize: 16,
             color: Colors.white,
@@ -177,7 +197,8 @@ class SubTitle extends StatelessWidget {
         ),
         title: Text(
           sub,
-          style: TextStyle(
+          style: GoogleFonts.getFont(
+            'Montserrat',
             fontWeight: FontWeight.w500,
             fontSize: 16,
             color: Colors.white,
@@ -205,7 +226,8 @@ class LanguageDropdown extends StatelessWidget {
           DropdownMenuItem(
             child: Text(
               'English',
-              style: TextStyle(
+              style: GoogleFonts.getFont(
+                'Montserrat',
                 fontWeight: FontWeight.w500,
                 fontSize: 14,
                 color: Colors.white,
@@ -216,7 +238,8 @@ class LanguageDropdown extends StatelessWidget {
           DropdownMenuItem(
             child: Text(
               'Tiếng việt',
-              style: TextStyle(
+              style: GoogleFonts.getFont(
+                'Montserrat',
                 fontWeight: FontWeight.w500,
                 fontSize: 14,
                 color: Colors.white,
@@ -283,7 +306,8 @@ class ReactButton extends StatelessWidget {
           ),
           Text(
             '$count' ?? '0',
-            style: TextStyle(
+            style: GoogleFonts.getFont(
+              'Montserrat',
               fontWeight: FontWeight.w500,
               fontSize: 14,
               color: Colors.white,

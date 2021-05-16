@@ -1,6 +1,7 @@
 import 'package:course_app/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ProfileAppBar extends StatelessWidget {
   const ProfileAppBar({
@@ -10,8 +11,6 @@ class ProfileAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      elevation: 0,
-      brightness: Brightness.dark,
       flexibleSpace: Container(
         child: MediaQuery.of(context).orientation == Orientation.portrait
             ? Image(
@@ -22,7 +21,6 @@ class ProfileAppBar extends StatelessWidget {
               )
             : null,
       ),
-      backgroundColor: primaryBGColor,
       leading: Padding(
         padding: const EdgeInsets.only(left: 12),
         child: IconButton(
@@ -32,7 +30,8 @@ class ProfileAppBar extends StatelessWidget {
       ),
       title: Text(
         'Profile',
-        style: TextStyle(
+        style: GoogleFonts.getFont(
+          'Montserrat',
           color: primaryColor,
           fontWeight: FontWeight.w700,
           fontSize: 20,

@@ -2,6 +2,7 @@ import 'package:course_app/screens/player_screen.dart';
 import 'package:course_app/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CourseCard extends StatelessWidget {
   const CourseCard({
@@ -18,7 +19,7 @@ class CourseCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 18),
+      padding: const EdgeInsets.only(left: 12),
       child: Material(
         type: MaterialType.transparency,
         child: InkWell(
@@ -77,7 +78,8 @@ class CourseCard extends StatelessWidget {
                       alignment: Alignment.center,
                       child: Text(
                         title,
-                        style: TextStyle(
+                        style: GoogleFonts.getFont(
+                          'Montserrat',
                           fontWeight: FontWeight.w700,
                           fontSize: 18,
                           color: Colors.white,
@@ -98,7 +100,8 @@ class CourseCard extends StatelessWidget {
                             padding: const EdgeInsets.only(left: 10),
                             child: Text(
                               author,
-                              style: TextStyle(
+                              style: GoogleFonts.getFont(
+                                'Montserrat',
                                 fontWeight: FontWeight.w500,
                                 fontSize: 12,
                                 color: Colors.white,

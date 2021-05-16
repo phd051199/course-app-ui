@@ -1,6 +1,7 @@
 import 'package:course_app/components/menu_item.dart';
 import 'package:course_app/utils/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class MenuDrawer extends StatelessWidget {
   const MenuDrawer({Key key}) : super(key: key);
@@ -17,7 +18,8 @@ class MenuDrawer extends StatelessWidget {
               padding: const EdgeInsets.only(top: 79, left: 24),
               child: Text(
                 'Menu',
-                style: TextStyle(
+                style: GoogleFonts.getFont(
+                  'Montserrat',
                   fontSize: 24,
                   fontWeight: FontWeight.w700,
                   color: Color(0xffFDF1DE),

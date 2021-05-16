@@ -1,6 +1,5 @@
 import 'package:course_app/components/course_list.dart';
 import 'package:course_app/components/main_title.dart';
-import 'package:course_app/components/search_field.dart';
 import 'package:course_app/utils/constants.dart';
 import 'package:flutter/material.dart';
 
@@ -13,14 +12,13 @@ class Body extends StatelessWidget {
       color: primaryBGColor,
       child: ListView(
         children: [
-          Stack(
+          Column(
             children: [
-              SearchBar(),
               Container(
                 child: Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(22, 107, 25, 0),
+                      padding: const EdgeInsets.fromLTRB(22, 33, 25, 0),
                       child: MainTitle(
                         title: 'My course',
                       ),

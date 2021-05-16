@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class SearchBar extends StatelessWidget {
   const SearchBar({
@@ -8,7 +9,7 @@ class SearchBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 10, left: 22, right: 27),
+      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 22),
       child: Container(
         alignment: Alignment.center,
         height: 48,
@@ -29,7 +30,8 @@ class SearchBar extends StatelessWidget {
               child: TextField(
                 decoration: InputDecoration(
                   hintText: 'Search course',
-                  hintStyle: TextStyle(
+                  hintStyle: GoogleFonts.getFont(
+                    'Montserrat',
                     fontWeight: FontWeight.w500,
                     fontSize: 16,
                   ),
