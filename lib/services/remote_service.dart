@@ -6,7 +6,22 @@ class RemoteServices {
   static final client = http.Client();
 
   static Future<List<Course>> fetchCourses() async {
-    final response = await client.get(Uri.parse('$apiURL/courses'));
+    final response = await client.get(
+      Uri.parse('$apiURL/courses'),
+    );
+    if (response.statusCode == 200) {
+      final jsonString = response.body;
+      return courseFromJson(jsonString);
+    } else {
+      //show error message
+      return null;
+    }
+  }
+
+  static Future<List<Course>> fetchMyCourses() async {
+    final response = await client.get(
+      Uri.parse('$apiURL/mycourses'),
+    );
     if (response.statusCode == 200) {
       final jsonString = response.body;
       return courseFromJson(jsonString);

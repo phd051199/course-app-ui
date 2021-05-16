@@ -1,11 +1,13 @@
-import 'package:course_app/components/course_card.dart';
-import 'package:course_app/controllers/course_controller.dart';
+import 'package:course_app/components/course/course_card.dart';
+import 'package:course_app/controllers/course/my_courses.dart';
 import 'package:course_app/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class CoursesList extends StatelessWidget {
-  final CourseController courseController = Get.put(CourseController());
+class MyCoursesList extends StatelessWidget {
+  final MyCourseController courseController = Get.put(
+    MyCourseController(),
+  );
 
   @override
   Widget build(BuildContext context) {

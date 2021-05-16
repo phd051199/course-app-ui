@@ -32,7 +32,7 @@ class SearchBar extends StatelessWidget {
                   hintText: 'Search course',
                   hintStyle: GoogleFonts.getFont(
                     'Montserrat',
-                    fontWeight: FontWeight.w500,
+                    fontWeight: FontWeight.w400,
                     fontSize: 16,
                   ),
                   border: InputBorder.none,

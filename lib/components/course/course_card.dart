@@ -75,7 +75,7 @@ class CourseCard extends StatelessWidget {
                         course.title,
                         style: GoogleFonts.getFont(
                           'Montserrat',
-                          fontWeight: FontWeight.w700,
+                          fontWeight: FontWeight.w600,
                           fontSize: 18,
                           color: Colors.white,
                         ),
@@ -88,8 +88,20 @@ class CourseCard extends StatelessWidget {
                       alignment: Alignment.bottomLeft,
                       child: Row(
                         children: [
-                          Image(
-                            image: AssetImage('assets/images/small1.png'),
+                          // Image(
+                          //   image: AssetImage('assets/images/small1.png'),
+                          // ),
+                          Container(
+                            height: 30,
+                            width: 30,
+                            child: Icon(
+                              Icons.person_rounded,
+                              color: Colors.white,
+                            ),
+                            decoration: BoxDecoration(
+                              color: Colors.black12,
+                              borderRadius: BorderRadius.circular(45),
+                            ),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 10),
@@ -97,7 +109,7 @@ class CourseCard extends StatelessWidget {
                               course.author,
                               style: GoogleFonts.getFont(
                                 'Montserrat',
-                                fontWeight: FontWeight.w500,
+                                fontWeight: FontWeight.w400,
                                 fontSize: 12,
                                 color: Colors.white,
                               ),

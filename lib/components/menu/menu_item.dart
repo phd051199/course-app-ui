@@ -22,7 +22,7 @@ class DrawerListTile extends StatelessWidget {
           style: GoogleFonts.getFont(
             'Montserrat',
             fontSize: 20,
-            fontWeight: FontWeight.w500,
+            fontWeight: FontWeight.w400,
             color: Colors.white,
           ),
         ),

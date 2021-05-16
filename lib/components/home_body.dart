@@ -1,4 +1,5 @@
-import 'package:course_app/components/course_list.dart';
+import 'package:course_app/components/course/all_courses.dart';
+import 'package:course_app/components/course/my_courses.dart';
 import 'package:course_app/components/main_title.dart';
 import 'package:course_app/utils/constants.dart';
 import 'package:flutter/material.dart';
@@ -20,10 +21,10 @@ class Body extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.fromLTRB(22, 33, 25, 0),
                       child: MainTitle(
-                        title: 'My course',
+                        title: 'My courses',
                       ),
                     ),
-                    CoursesList(),
+                    MyCoursesList(),
                     Padding(
                       padding:
                           const EdgeInsets.only(top: 38, left: 25, right: 22),

@@ -1,4 +1,3 @@
-import 'package:course_app/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -32,8 +31,8 @@ class ProfileAppBar extends StatelessWidget {
         'Profile',
         style: GoogleFonts.getFont(
           'Montserrat',
-          color: primaryColor,
-          fontWeight: FontWeight.w700,
+          color: Colors.white,
+          fontWeight: FontWeight.w600,
           fontSize: 20,
         ),
       ),

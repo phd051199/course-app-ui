@@ -1,4 +1,4 @@
-import 'package:course_app/components/player_controls.dart';
+import 'package:course_app/components/video_player/player_controls.dart';
 import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -23,7 +23,8 @@ class _PlayerScreenState extends State<PlayerScreen> {
   void initState() {
     super.initState();
     flickManager = FlickManager(
-        videoPlayerController: VideoPlayerController.network(widget.videoLink));
+      videoPlayerController: VideoPlayerController.network(widget.videoLink),
+    );
   }
 
   @override
@@ -44,8 +45,8 @@ class _PlayerScreenState extends State<PlayerScreen> {
           'Home',
           style: GoogleFonts.getFont(
             'Montserrat',
-            color: primaryColor,
-            fontWeight: FontWeight.w700,
+            color: Colors.white,
+            fontWeight: FontWeight.w600,
             fontSize: 20,
           ),
         ),
@@ -65,7 +66,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
                       widget.title,
                       style: GoogleFonts.getFont(
                         'Montserrat',
-                        fontWeight: FontWeight.w500,
+                        fontWeight: FontWeight.w400,
                         fontSize: 16,
                         color: Colors.white,
                       ),
@@ -189,7 +190,7 @@ class SubTitle extends StatelessWidget {
           time,
           style: GoogleFonts.getFont(
             'Montserrat',
-            fontWeight: FontWeight.w500,
+            fontWeight: FontWeight.w400,
             fontSize: 16,
             color: Colors.white,
           ),
@@ -198,7 +199,7 @@ class SubTitle extends StatelessWidget {
           sub,
           style: GoogleFonts.getFont(
             'Montserrat',
-            fontWeight: FontWeight.w500,
+            fontWeight: FontWeight.w400,
             fontSize: 16,
             color: Colors.white,
           ),
@@ -227,7 +228,7 @@ class LanguageDropdown extends StatelessWidget {
               'English',
               style: GoogleFonts.getFont(
                 'Montserrat',
-                fontWeight: FontWeight.w500,
+                fontWeight: FontWeight.w400,
                 fontSize: 14,
                 color: Colors.white,
               ),
@@ -239,7 +240,7 @@ class LanguageDropdown extends StatelessWidget {
               'Tiếng việt',
               style: GoogleFonts.getFont(
                 'Montserrat',
-                fontWeight: FontWeight.w500,
+                fontWeight: FontWeight.w400,
                 fontSize: 14,
                 color: Colors.white,
               ),
@@ -298,7 +299,7 @@ class ReactButton extends StatelessWidget {
         children: [
           Icon(
             icon,
-            color: primaryColor,
+            color: Colors.white,
           ),
           SizedBox(
             width: 6.45,
@@ -307,7 +308,7 @@ class ReactButton extends StatelessWidget {
             '$count' ?? '0',
             style: GoogleFonts.getFont(
               'Montserrat',
-              fontWeight: FontWeight.w500,
+              fontWeight: FontWeight.w400,
               fontSize: 14,
               color: Colors.white,
             ),

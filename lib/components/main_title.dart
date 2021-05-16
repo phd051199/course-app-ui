@@ -1,4 +1,3 @@
-import 'package:course_app/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -19,8 +18,8 @@ class MainTitle extends StatelessWidget {
           style: GoogleFonts.getFont(
             'Montserrat',
             fontSize: 20,
-            fontWeight: FontWeight.w700,
-            color: primaryColor,
+            fontWeight: FontWeight.w600,
+            color: Colors.white,
           ),
         ),
         Text(
@@ -29,7 +28,7 @@ class MainTitle extends StatelessWidget {
             'Montserrat',
             fontSize: 16,
             color: Color(0xffFFB347),
-            fontWeight: FontWeight.w500,
+            fontWeight: FontWeight.w400,
           ),
         ),
       ],

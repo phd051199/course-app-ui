@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:course_app/components/player_toggle.dart';
+import 'package:course_app/components/video_player/player_toggle.dart';
 import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/material.dart';
 
@@ -13,14 +13,14 @@ class PlayerControls extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
-      children: <Widget>[
+      children: [
         FlickShowControlsAction(
           child: FlickSeekVideoAction(
             child: Center(
               child: FlickVideoBuffer(
                 child: FlickAutoHideChild(
                   showIfVideoNotInitialized: false,
-                  child: LandscapePlayToggle(),
+                  child: PlayToggle(),
                 ),
               ),
             ),
@@ -30,9 +30,7 @@ class PlayerControls extends StatelessWidget {
           child: FlickAutoHideChild(
             child: Column(
               children: [
-                Expanded(
-                  child: Container(),
-                ),
+                Spacer(),
                 Padding(
                   padding: const EdgeInsets.only(bottom: 8.0),
                   child: Container(
@@ -44,7 +42,7 @@ class PlayerControls extends StatelessWidget {
                     padding: EdgeInsets.symmetric(horizontal: 12),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
+                      children: [
                         FlickPlayToggle(
                           size: 16,
                         ),
@@ -63,50 +61,29 @@ class PlayerControls extends StatelessWidget {
                               flickProgressBarSettings:
                                   FlickProgressBarSettings(
                                 height: 10,
-                                handleRadius: 0,
+                                handleRadius: 6,
+                                handleColor: Colors.white,
                                 padding: EdgeInsets.symmetric(
                                   horizontal: 8.0,
                                   vertical: 8,
                                 ),
-                                backgroundColor: Colors.white24,
-                                bufferedColor: Colors.white38,
-                                getPlayedPaint: (
-                                    {double handleRadius,
-                                    double height,
-                                    double playedPart,
-                                    double width}) {
+                                getPlayedPaint: ({
+                                  double handleRadius,
+                                  double height,
+                                  double playedPart,
+                                  double width,
+                                }) {
                                   return Paint()
                                     ..shader = LinearGradient(colors: [
                                       Color.fromRGBO(255, 172, 113, 1),
                                       Color.fromRGBO(255, 132, 80, 1),
                                     ], stops: [
                                       0.0,
-                                      0.5
+                                      0.3
                                     ]).createShader(
                                       Rect.fromPoints(
                                         Offset(0, 0),
                                         Offset(width, 0),
-                                      ),
-                                    );
-                                },
-                                getHandlePaint: (
-                                    {double handleRadius,
-                                    double height,
-                                    double playedPart,
-                                    double width}) {
-                                  return Paint()
-                                    ..shader = RadialGradient(
-                                      colors: [
-                                        Color.fromRGBO(255, 172, 113, 1),
-                                        Color.fromRGBO(255, 132, 80, 1),
-                                        Color.fromRGBO(255, 132, 80, 1),
-                                      ],
-                                      stops: [0.0, 0.4, 0.5],
-                                      radius: 0.4,
-                                    ).createShader(
-                                      Rect.fromCircle(
-                                        center: Offset(playedPart, height / 2),
-                                        radius: handleRadius,
                                       ),
                                     );
                                 },

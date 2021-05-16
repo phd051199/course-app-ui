@@ -1,6 +1,5 @@
-import 'package:course_app/components/course_list.dart';
+import 'package:course_app/components/course/my_courses.dart';
 import 'package:course_app/components/main_title.dart';
-import 'package:course_app/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -28,8 +27,8 @@ class ProfileBody extends StatelessWidget {
                 'Cháu ông dev',
                 style: GoogleFonts.getFont(
                   'Montserrat',
-                  color: primaryColor,
-                  fontWeight: FontWeight.w700,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w600,
                   fontSize: 24,
                 ),
               ),
@@ -40,8 +39,8 @@ class ProfileBody extends StatelessWidget {
                 '@chauOngDev',
                 style: GoogleFonts.getFont(
                   'Montserrat',
-                  color: primaryColor,
-                  fontWeight: FontWeight.w500,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w400,
                   fontSize: 16,
                 ),
               ),
@@ -59,7 +58,7 @@ class ProfileBody extends StatelessWidget {
                 title: 'Courses Watched',
               ),
             ),
-            CoursesList(),
+            MyCoursesList(),
           ],
         ),
       ),
