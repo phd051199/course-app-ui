@@ -87,9 +87,8 @@ class _PlayerScreenState extends State<PlayerScreen> {
                               DeviceOrientation.landscapeLeft,
                               DeviceOrientation.portraitUp
                             ],
-                            systemUIOverlay: [],
                             flickVideoWithControls: FlickVideoWithControls(
-                              controls: LandscapePlayerControls(),
+                              controls: PlayerControls(),
                             ),
                           ),
                         ),

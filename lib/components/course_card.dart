@@ -1,3 +1,4 @@
+import 'package:course_app/models/course.dart';
 import 'package:course_app/screens/player_screen.dart';
 import 'package:course_app/utils/constants.dart';
 import 'package:flutter/material.dart';
@@ -5,17 +6,9 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CourseCard extends StatelessWidget {
-  const CourseCard({
-    Key key,
-    this.title,
-    this.author,
-    this.firstColor,
-    this.secondColor,
-    this.videoLink,
-  }) : super(key: key);
+  const CourseCard(this.course);
+  final Course course;
 
-  final String title, author, videoLink;
-  final Color firstColor, secondColor;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -25,8 +18,8 @@ class CourseCard extends StatelessWidget {
         child: InkWell(
           onTap: () => Get.to(
             () => PlayerScreen(
-              title: title,
-              videoLink: videoLink,
+              title: course.title,
+              videoLink: course.videoLink,
             ),
           ),
           child: Card(
@@ -63,11 +56,13 @@ class CourseCard extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 18),
+                    padding: const EdgeInsets.only(top: 32),
                     child: Align(
                       alignment: Alignment.topCenter,
-                      child: Image(
-                        image: AssetImage('assets/images/avator.png'),
+                      child: Image.network(
+                        course.thumbnail,
+                        height: 150,
+                        width: 150,
                       ),
                     ),
                   ),
@@ -77,7 +72,7 @@ class CourseCard extends StatelessWidget {
                     child: Align(
                       alignment: Alignment.center,
                       child: Text(
-                        title,
+                        course.title,
                         style: GoogleFonts.getFont(
                           'Montserrat',
                           fontWeight: FontWeight.w700,
@@ -99,7 +94,7 @@ class CourseCard extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(left: 10),
                             child: Text(
-                              author,
+                              course.author,
                               style: GoogleFonts.getFont(
                                 'Montserrat',
                                 fontWeight: FontWeight.w500,

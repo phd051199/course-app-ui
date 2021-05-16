@@ -4,9 +4,8 @@ import 'package:course_app/components/player_toggle.dart';
 import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/material.dart';
 
-class LandscapePlayerControls extends StatelessWidget {
-  const LandscapePlayerControls(
-      {Key key, this.iconSize = 20, this.fontSize = 12})
+class PlayerControls extends StatelessWidget {
+  const PlayerControls({Key key, this.iconSize = 20, this.fontSize = 12})
       : super(key: key);
   final double iconSize;
   final double fontSize;
