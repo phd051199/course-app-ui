@@ -2,11 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DrawerListTile extends StatelessWidget {
-  const DrawerListTile({
-    Key key,
-    this.title,
-    this.menuItemClicked,
-  }) : super(key: key);
+  const DrawerListTile({this.title, this.menuItemClicked});
   final String title;
   final Function menuItemClicked;
 

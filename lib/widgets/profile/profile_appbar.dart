@@ -3,15 +3,11 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ProfileAppBar extends StatelessWidget {
-  const ProfileAppBar({
-    Key key,
-  }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return AppBar(
       flexibleSpace: Container(
-        child: MediaQuery.of(context).orientation == Orientation.portrait
+        child: context.isPortrait
             ? Image(
                 image: AssetImage('assets/images/bgprofile.png'),
                 fit: BoxFit.fill,

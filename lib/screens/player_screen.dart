@@ -1,37 +1,19 @@
-import 'package:course_app/components/video_player/player_controls.dart';
+import 'package:course_app/controllers/video_player.dart';
+import 'package:course_app/widgets/video_player/player_controls.dart';
 import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:video_player/video_player.dart';
 
 import '../utils/constants.dart';
 
-class PlayerScreen extends StatefulWidget {
-  PlayerScreen({Key key, this.videoLink, this.title}) : super(key: key);
+class PlayerScreen extends StatelessWidget {
+  PlayerScreen({this.videoLink, this.title});
   final String videoLink, title;
 
   @override
-  _PlayerScreenState createState() => _PlayerScreenState();
-}
-
-class _PlayerScreenState extends State<PlayerScreen> {
-  FlickManager flickManager;
-
-  @override
-  void initState() {
-    super.initState();
-    flickManager = FlickManager(
-      videoPlayerController: VideoPlayerController.network(widget.videoLink),
-    );
-  }
-
-  @override
   Widget build(BuildContext context) {
-    final isLandScape =
-        MediaQuery.of(context).orientation == Orientation.landscape;
-
     return Scaffold(
       appBar: AppBar(
         leading: Padding(
@@ -52,124 +34,112 @@ class _PlayerScreenState extends State<PlayerScreen> {
         ),
         centerTitle: false,
       ),
-      body: Stack(
-        children: [
-          SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 18, vertical: 4),
-                  child: Container(
-                    child: Text(
-                      widget.title,
-                      style: GoogleFonts.getFont(
-                        'Montserrat',
-                        fontWeight: FontWeight.w400,
-                        fontSize: 16,
-                        color: Colors.white,
-                      ),
-                    ),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 4),
+              child: Container(
+                child: Text(
+                  title,
+                  style: GoogleFonts.getFont(
+                    'Montserrat',
+                    fontWeight: FontWeight.w400,
+                    fontSize: 16,
+                    color: Colors.white,
                   ),
                 ),
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 18, vertical: 4),
-                  child: Container(
-                    child: Stack(
-                      children: [
-                        Container(
-                          height: !isLandScape ? 225 : double.infinity,
-                          child: FlickVideoPlayer(
-                            flickManager: flickManager,
-                            preferredDeviceOrientation: [
-                              DeviceOrientation.landscapeRight,
-                              DeviceOrientation.landscapeLeft,
-                              DeviceOrientation.portraitUp
-                            ],
-                            flickVideoWithControls: FlickVideoWithControls(
-                              controls: PlayerControls(),
-                            ),
-                          ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 4),
+              child: Container(
+                child: GetBuilder<PlayerController>(
+                  init: PlayerController(videoLink),
+                  builder: (_) {
+                    return Container(
+                      height: !context.isLandscape ? 225 : Get.width,
+                      child: FlickVideoPlayer(
+                        flickManager: _.flickManager,
+                        preferredDeviceOrientation: [
+                          DeviceOrientation.landscapeRight,
+                          DeviceOrientation.landscapeLeft,
+                          DeviceOrientation.portraitUp
+                        ],
+                        flickVideoWithControls: FlickVideoWithControls(
+                          controls: PlayerControls(),
                         ),
-                      ],
-                    ),
-                  ),
+                      ),
+                    );
+                  },
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                ReactButton(
+                  icon: Icons.thumb_up_alt_outlined,
+                  count: 123,
+                ),
+                ReactButton(
+                  icon: Icons.thumb_down_alt_outlined,
+                  count: 10,
+                ),
+              ],
+            ),
+            LanguageDropdown(),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  color: Color(0xff484848),
+                ),
+                height: 300,
+                child: ListView(
                   children: [
-                    ReactButton(
-                      icon: Icons.thumb_up_alt_outlined,
-                      count: 123,
+                    SubTitle(
+                      time: '0:02',
+                      sub: "Sorry can't answer your call at the",
                     ),
-                    ReactButton(
-                      icon: Icons.thumb_down_alt_outlined,
-                      count: 10,
+                    SubTitle(
+                      time: '0:02',
+                      sub: "moment",
+                    ),
+                    SubTitle(
+                      time: '1:02',
+                      sub: "Cause she really",
+                    ),
+                    SubTitle(
+                      time: '2:02',
+                      sub: "Got me focused",
+                    ),
+                    SubTitle(
+                      time: '3:02',
+                      sub: "On her lips wow",
+                    ),
+                    SubTitle(
+                      time: '4:02',
+                      sub: "Sorry can't answer your call",
+                    ),
+                    SubTitle(
+                      time: '5:02',
+                      sub: "Sorry can't answer your call",
+                    ),
+                    SubTitle(
+                      time: '6:02',
+                      sub: "Sorry can't answer your call",
                     ),
                   ],
                 ),
-                LanguageDropdown(),
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      color: Color(0xff484848),
-                    ),
-                    height: 300,
-                    child: ListView(
-                      children: [
-                        SubTitle(
-                          time: '0:02',
-                          sub: "Sorry can't answer your call at the",
-                        ),
-                        SubTitle(
-                          time: '0:02',
-                          sub: "moment",
-                        ),
-                        SubTitle(
-                          time: '1:02',
-                          sub: "Cause she really",
-                        ),
-                        SubTitle(
-                          time: '2:02',
-                          sub: "Got me focused",
-                        ),
-                        SubTitle(
-                          time: '3:02',
-                          sub: "On her lips wow",
-                        ),
-                        SubTitle(
-                          time: '4:02',
-                          sub: "Sorry can't answer your call",
-                        ),
-                        SubTitle(
-                          time: '5:02',
-                          sub: "Sorry can't answer your call",
-                        ),
-                        SubTitle(
-                          time: '6:02',
-                          sub: "Sorry can't answer your call",
-                        ),
-                      ],
-                    ),
-                  ),
-                )
-              ],
-            ),
-          ),
-        ],
+              ),
+            )
+          ],
+        ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    flickManager.dispose();
-    super.dispose();
   }
 }
 

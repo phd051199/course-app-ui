@@ -1,12 +1,11 @@
 import 'dart:ui';
 
-import 'package:course_app/components/video_player/player_toggle.dart';
+import 'package:course_app/widgets/video_player/player_toggle.dart';
 import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/material.dart';
 
 class PlayerControls extends StatelessWidget {
-  const PlayerControls({Key key, this.iconSize = 20, this.fontSize = 12})
-      : super(key: key);
+  const PlayerControls({this.iconSize = 20, this.fontSize = 12});
   final double iconSize;
   final double fontSize;
 

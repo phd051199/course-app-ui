@@ -1,13 +1,9 @@
-import 'package:course_app/components/course/my_courses.dart';
-import 'package:course_app/components/main_title.dart';
+import 'package:course_app/widgets/course/my_courses.dart';
+import 'package:course_app/widgets/main_title.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ProfileBody extends StatelessWidget {
-  const ProfileBody({
-    Key key,
-  }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Padding(

@@ -1,21 +1,14 @@
-import 'package:course_app/components/home_body.dart';
-import 'package:course_app/components/menu/menu.dart';
-import 'package:course_app/components/search_field.dart';
+import 'package:course_app/widgets/home_body.dart';
+import 'package:course_app/widgets/menu/menu.dart';
+import 'package:course_app/widgets/search_field.dart';
 import 'package:course_app/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class HomeScreen extends StatefulWidget {
-  HomeScreen({Key key}) : super(key: key);
+class HomeScreen extends StatelessWidget {
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
-  @override
-  _HomeScreenState createState() => _HomeScreenState();
-}
-
-GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
-
-class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

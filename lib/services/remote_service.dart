@@ -13,8 +13,7 @@ class RemoteServices {
       final jsonString = response.body;
       return courseFromJson(jsonString);
     } else {
-      //show error message
-      return null;
+      return [];
     }
   }
 
@@ -26,8 +25,7 @@ class RemoteServices {
       final jsonString = response.body;
       return courseFromJson(jsonString);
     } else {
-      //show error message
-      return null;
+      return [];
     }
   }
 }
