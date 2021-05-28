@@ -48,8 +48,8 @@ class HomeScreen extends StatelessWidget {
                 ),
                 child: Image(
                   image: AssetImage('assets/images/avatar.png'),
-                  height: 50,
-                  width: 50,
+                  height: 46,
+                  width: 46,
                 ),
               ),
             ),

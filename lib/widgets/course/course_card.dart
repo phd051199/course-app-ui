@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:course_app/models/course.dart';
 import 'package:course_app/screens/player_screen.dart';
 import 'package:course_app/utils/constants.dart';
@@ -31,19 +33,12 @@ class CourseCard extends StatelessWidget {
               decoration: BoxDecoration(
                 color: primaryBGColor,
                 borderRadius: BorderRadius.circular(12),
-                boxShadow: [
-                  BoxShadow(
-                    blurRadius: 5,
-                    color: secondColor.withOpacity(0.1),
-                    offset: Offset(0, 3),
-                  )
-                ],
                 gradient: LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: [
-                    firstColor,
-                    secondColor,
+                    Colors.white70,
+                    Color(Random().nextInt(0xffffffff)),
                   ],
                 ),
               ),
@@ -51,18 +46,35 @@ class CourseCard extends StatelessWidget {
                 children: [
                   Align(
                     alignment: Alignment.topRight,
-                    child: Image(
-                      image: AssetImage('assets/images/play.png'),
+                    child: Container(
+                      margin: EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            blurRadius: 10,
+                            color: Colors.black.withOpacity(0.1),
+                          ),
+                        ],
+                      ),
+                      child: Icon(
+                        Icons.play_circle_fill,
+                        size: 42,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 32),
+                    padding: const EdgeInsets.only(top: 38),
                     child: Align(
                       alignment: Alignment.topCenter,
-                      child: Image.network(
-                        course.thumbnail,
-                        height: 150,
-                        width: 150,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(12),
+                        child: Image.network(
+                          course.thumbnail,
+                          height: 150,
+                          width: 150,
+                          fit: BoxFit.fill,
+                        ),
                       ),
                     ),
                   ),
@@ -88,9 +100,6 @@ class CourseCard extends StatelessWidget {
                       alignment: Alignment.bottomLeft,
                       child: Row(
                         children: [
-                          // Image(
-                          //   image: AssetImage('assets/images/small1.png'),
-                          // ),
                           Container(
                             height: 30,
                             width: 30,
