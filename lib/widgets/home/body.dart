@@ -1,14 +1,25 @@
+import 'package:course_app/controllers/course/all.dart';
+import 'package:course_app/controllers/course/my.dart';
+import 'package:course_app/utils/constants.dart';
 import 'package:course_app/widgets/course/all.dart';
 import 'package:course_app/widgets/course/my.dart';
 import 'package:course_app/widgets/home/title.dart';
-import 'package:course_app/utils/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: primaryBGColor,
+    final CourseController courseController = Get.put(CourseController());
+    final MyCourseController myCourseController = Get.put(MyCourseController());
+
+    return RefreshIndicator(
+      color: secondaryColor,
+      onRefresh: () async {
+        await Future.delayed(Duration(microseconds: 800));
+        courseController.fetchCourses();
+        myCourseController.fetchMyCourses();
+      },
       child: ListView(
         children: [
           Column(
