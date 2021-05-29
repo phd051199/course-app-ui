@@ -1,4 +1,3 @@
-import 'package:course_app/screens/home.dart';
 import 'package:course_app/utils/constants.dart';
 import 'package:course_app/widgets/login/button.dart';
 import 'package:course_app/widgets/login/textfield.dart';
@@ -46,7 +45,7 @@ class ForgotPasswordScreen extends StatelessWidget {
               ),
               AuthButton(
                 btnLabel: 'Submit',
-                onPressed: () => Get.offAll(() => HomeScreen()),
+                onPressed: () => Get.back(),
                 btnColor: Colors.orangeAccent,
                 textColor: Colors.black,
               ),
@@ -55,7 +54,7 @@ class ForgotPasswordScreen extends StatelessWidget {
               ),
               AuthButton(
                 btnLabel: 'Sign in',
-                onPressed: () => Get.offAll(() => HomeScreen()),
+                onPressed: () => Get.back(),
                 btnColor: Color(0xff444444),
                 textColor: Colors.white,
               ),

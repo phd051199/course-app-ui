@@ -16,7 +16,7 @@ class Body extends StatelessWidget {
     return RefreshIndicator(
       color: secondaryColor,
       onRefresh: () async {
-        await Future.delayed(Duration(microseconds: 800));
+        await Future.delayed(Duration(milliseconds: 800));
         courseController.fetchCourses();
         myCourseController.fetchMyCourses();
       },

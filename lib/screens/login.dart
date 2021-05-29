@@ -9,7 +9,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
+}
+
+bool isUserInvalid = true;
+bool isPwdInvalid = true;
+String btnSignInLabel = 'Sign In';
+
+class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,9 +71,28 @@ class LoginScreen extends StatelessWidget {
               ),
               AuthInput(
                 label: 'Your Email / Username',
+                isInvalid: isUserInvalid,
+                onChanged: (text) {
+                  setState(() {
+                    btnSignInLabel = 'Sign In';
+                    text.length < 1
+                        ? isUserInvalid = true
+                        : isUserInvalid = false;
+                  });
+                },
               ),
               AuthInput(
                 label: 'Password',
+                isInvalid: isPwdInvalid,
+                isPwdField: true,
+                onChanged: (text) {
+                  setState(() {
+                    btnSignInLabel = 'Sign In';
+                    text.length < 6
+                        ? isPwdInvalid = true
+                        : isPwdInvalid = false;
+                  });
+                },
               ),
               SizedBox(
                 height: 28,
@@ -129,8 +157,14 @@ class LoginScreen extends StatelessWidget {
                 height: 42,
               ),
               AuthButton(
-                btnLabel: 'Sign In',
-                onPressed: () => Get.offAll(() => HomeScreen()),
+                btnLabel: btnSignInLabel,
+                onPressed: () {
+                  setState(() {
+                    !isUserInvalid && !isPwdInvalid
+                        ? Get.offAll(() => HomeScreen())
+                        : btnSignInLabel = 'Nhập sai bét kìa ?';
+                  });
+                },
                 btnColor: Colors.orangeAccent,
                 textColor: Colors.black,
               ),

@@ -6,42 +6,66 @@ class AuthInput extends StatelessWidget {
   const AuthInput({
     Key key,
     this.label,
+    this.isPwdField,
+    this.onChanged,
+    this.isInvalid,
+    this.inputController,
   }) : super(key: key);
-  final label;
+  final label, isPwdField, isInvalid, inputController;
+  final Function onChanged;
+
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        vertical: 15,
-      ),
-      child: TextField(
-        decoration: InputDecoration(
-          labelText: label,
-          labelStyle: GoogleFonts.getFont(
-            'Montserrat',
-            color: primaryTextColor,
-            fontWeight: FontWeight.w400,
-            fontSize: 16,
+    bool showPass = false;
+    return Stack(
+      alignment: AlignmentDirectional.centerEnd,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(
+            vertical: 15,
           ),
-          enabledBorder: UnderlineInputBorder(
-            borderSide: BorderSide(
-              color: Color(0xffEBEBEB),
+          child: TextField(
+            controller: inputController,
+            onChanged: onChanged,
+            obscureText: isPwdField == true ? !showPass : false,
+            decoration: InputDecoration(
+              labelText: label,
+              labelStyle: GoogleFonts.getFont(
+                'Montserrat',
+                color: primaryTextColor,
+                fontWeight: FontWeight.w400,
+                fontSize: 16,
+              ),
+              enabledBorder: UnderlineInputBorder(
+                borderSide: BorderSide(
+                  color: primaryTextColor,
+                ),
+              ),
+              focusedBorder: UnderlineInputBorder(
+                borderSide: BorderSide(
+                  color: isInvalid ? Colors.red : Colors.green,
+                ),
+              ),
             ),
-          ),
-          focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(
-              color: Color(0xff6FD181),
+            style: GoogleFonts.getFont(
+              'Montserrat',
+              color: primaryTextColor,
+              fontWeight: FontWeight.w400,
+              fontSize: 16,
             ),
+            cursorColor: primaryTextColor,
           ),
         ),
-        style: GoogleFonts.getFont(
-          'Montserrat',
-          color: primaryTextColor,
-          fontWeight: FontWeight.w400,
-          fontSize: 16,
-        ),
-        cursorColor: primaryTextColor,
-      ),
+        isInvalid
+            ? Icon(
+                Icons.close,
+                color: Colors.red,
+              )
+            : Icon(
+                Icons.check,
+                color: Colors.green,
+              ),
+      ],
     );
   }
 }
