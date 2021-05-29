@@ -1,5 +1,5 @@
-import 'package:course_app/widgets/course/my_courses.dart';
-import 'package:course_app/widgets/main_title.dart';
+import 'package:course_app/widgets/course/my.dart';
+import 'package:course_app/widgets/home/title.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 

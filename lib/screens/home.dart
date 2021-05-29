@@ -1,7 +1,7 @@
-import 'package:course_app/widgets/home_body.dart';
+import 'package:course_app/widgets/home/body.dart';
 import 'package:course_app/widgets/menu/menu.dart';
-import 'package:course_app/widgets/search_field.dart';
-import 'package:course_app/screens/profile_screen.dart';
+import 'package:course_app/widgets/home/search.dart';
+import 'package:course_app/screens/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -17,7 +17,11 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
           icon: Image(
-            image: AssetImage('assets/images/menu.png'),
+            height: 22,
+            width: 22,
+            image: AssetImage(
+              'assets/images/menu.png',
+            ),
           ),
           onPressed: () => scaffoldKey.currentState.openDrawer(),
         ),

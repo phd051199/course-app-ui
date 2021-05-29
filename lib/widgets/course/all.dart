@@ -1,5 +1,5 @@
-import 'package:course_app/widgets/course/course_card.dart';
-import 'package:course_app/controllers/course/all_courses.dart';
+import 'package:course_app/widgets/course/one.dart';
+import 'package:course_app/controllers/course/all.dart';
 import 'package:course_app/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

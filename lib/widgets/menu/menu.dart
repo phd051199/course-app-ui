@@ -1,4 +1,4 @@
-import 'package:course_app/widgets/menu/menu_item.dart';
+import 'package:course_app/widgets/menu/item.dart';
 import 'package:course_app/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -13,7 +13,7 @@ class MenuDrawer extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 79, left: 24),
+              padding: const EdgeInsets.only(top: 62, left: 24),
               child: Text(
                 'Menu',
                 style: GoogleFonts.getFont(
@@ -33,6 +33,9 @@ class MenuDrawer extends StatelessWidget {
             ),
             DrawerListTile(
               title: 'Setting',
+            ),
+            DrawerListTile(
+              title: 'Sign out',
             ),
           ],
         ),

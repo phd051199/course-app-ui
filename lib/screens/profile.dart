@@ -1,5 +1,5 @@
-import 'package:course_app/widgets/profile/profile_appbar.dart';
-import 'package:course_app/widgets/profile/profile_body.dart';
+import 'package:course_app/widgets/profile/appbar.dart';
+import 'package:course_app/widgets/profile/body.dart';
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatelessWidget {

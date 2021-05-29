@@ -1,5 +1,5 @@
 import 'package:course_app/models/course.dart';
-import 'package:course_app/services/remote_service.dart';
+import 'package:course_app/services/remote.dart';
 import 'package:get/get.dart';
 
 class MyCourseController extends GetxController {

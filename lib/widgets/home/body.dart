@@ -1,6 +1,6 @@
-import 'package:course_app/widgets/course/all_courses.dart';
-import 'package:course_app/widgets/course/my_courses.dart';
-import 'package:course_app/widgets/main_title.dart';
+import 'package:course_app/widgets/course/all.dart';
+import 'package:course_app/widgets/course/my.dart';
+import 'package:course_app/widgets/home/title.dart';
 import 'package:course_app/utils/constants.dart';
 import 'package:flutter/material.dart';
 

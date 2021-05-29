@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:course_app/models/course.dart';
-import 'package:course_app/screens/player_screen.dart';
+import 'package:course_app/screens/player.dart';
 import 'package:course_app/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -51,8 +51,8 @@ class CourseCard extends StatelessWidget {
                       decoration: BoxDecoration(
                         boxShadow: [
                           BoxShadow(
-                            blurRadius: 10,
-                            color: Colors.black.withOpacity(0.1),
+                            blurRadius: 32,
+                            color: Colors.black.withOpacity(0.05),
                           ),
                         ],
                       ),

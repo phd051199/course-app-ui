@@ -1,4 +1,4 @@
-import 'package:course_app/screens/home_screen.dart';
+import 'package:course_app/screens/login.dart';
 import 'package:course_app/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -19,6 +19,7 @@ class CourseApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        unselectedWidgetColor: primaryTextColor,
         scaffoldBackgroundColor: primaryBGColor,
         appBarTheme: AppBarTheme(
           elevation: 0,
@@ -26,7 +27,7 @@ class CourseApp extends StatelessWidget {
           brightness: Brightness.dark,
         ),
       ),
-      home: HomeScreen(),
+      home: LoginScreen(),
     );
   }
 }
