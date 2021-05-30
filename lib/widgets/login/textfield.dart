@@ -10,8 +10,9 @@ class AuthInput extends StatelessWidget {
     this.onChanged,
     this.isInvalid,
     this.inputController,
+    this.errorText,
   }) : super(key: key);
-  final label, isPwdField, isInvalid, inputController;
+  final label, isPwdField, isInvalid, inputController, errorText;
   final Function onChanged;
 
   @override
@@ -30,6 +31,7 @@ class AuthInput extends StatelessWidget {
             obscureText: isPwdField == true ? !showPass : false,
             decoration: InputDecoration(
               labelText: label,
+              errorText: errorText,
               labelStyle: GoogleFonts.getFont(
                 'Montserrat',
                 color: primaryTextColor,

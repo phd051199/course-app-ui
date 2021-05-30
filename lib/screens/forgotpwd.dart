@@ -5,7 +5,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class ForgotPasswordScreen extends StatelessWidget {
+class ForgotPasswordScreen extends StatefulWidget {
+  @override
+  _ForgotPasswordScreenState createState() => _ForgotPasswordScreenState();
+}
+
+bool isEmailInvalid = true;
+
+TextEditingController emailInputController = new TextEditingController();
+
+class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,7 +49,16 @@ class ForgotPasswordScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 32),
                 child: AuthInput(
+                  inputController: emailInputController,
                   label: 'Your Email',
+                  isInvalid: isEmailInvalid,
+                  onChanged: (text) {
+                    setState(() {
+                      text.length > 1 && validEmail.hasMatch(text)
+                          ? isEmailInvalid = false
+                          : isEmailInvalid = true;
+                    });
+                  },
                 ),
               ),
               AuthButton(

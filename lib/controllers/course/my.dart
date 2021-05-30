@@ -1,5 +1,5 @@
 import 'package:course_app/models/course.dart';
-import 'package:course_app/services/remote.dart';
+import 'package:course_app/services/course.dart';
 import 'package:get/get.dart';
 
 class MyCourseController extends GetxController {
@@ -15,7 +15,7 @@ class MyCourseController extends GetxController {
   void fetchMyCourses() async {
     try {
       isLoading(true);
-      final courses = await RemoteServices.fetchMyCourses();
+      final courses = await CourseServices.fetchMyCourses();
       if (courses != null) {
         courseList.value = courses;
       }

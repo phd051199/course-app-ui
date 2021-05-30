@@ -1,4 +1,4 @@
-import 'package:course_app/screens/home.dart';
+import 'package:course_app/services/auth.dart';
 import 'package:course_app/utils/constants.dart';
 import 'package:course_app/widgets/login/button.dart';
 import 'package:course_app/widgets/login/textfield.dart';
@@ -11,16 +11,19 @@ class RegisterScreen extends StatefulWidget {
   _RegisterScreenState createState() => _RegisterScreenState();
 }
 
-String btnSignUpLabel = 'Sign Up';
 bool isUserInvalid = true;
+bool isFullnameInvalid = true;
 bool isEmailInvalid = true;
 bool isPwdInvalid = true;
 bool isRPwdInvalid = true;
 TextEditingController usernameInputController = new TextEditingController();
+TextEditingController fullnameInputController = new TextEditingController();
 TextEditingController passwordInputController = new TextEditingController();
 TextEditingController emailInputController = new TextEditingController();
 TextEditingController retypePasswordInputController =
     new TextEditingController();
+String usernameInvalidMsg;
+String pwdInvalidMsg;
 
 class _RegisterScreenState extends State<RegisterScreen> {
   @override
@@ -79,10 +82,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 isInvalid: isUserInvalid,
                 onChanged: (text) {
                   setState(() {
-                    btnSignUpLabel = 'Sign Up';
-                    text.length < 1
-                        ? isUserInvalid = true
-                        : isUserInvalid = false;
+                    text.length > 5 && validCharacters.hasMatch(text)
+                        ? isUserInvalid = false
+                        : isUserInvalid = true;
+                  });
+                },
+              ),
+              AuthInput(
+                inputController: fullnameInputController,
+                label: 'Full Name',
+                isInvalid: isFullnameInvalid,
+                onChanged: (text) {
+                  setState(() {
+                    text.length > 5
+                        ? isFullnameInvalid = false
+                        : isFullnameInvalid = true;
                   });
                 },
               ),
@@ -92,10 +106,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 isInvalid: isEmailInvalid,
                 onChanged: (text) {
                   setState(() {
-                    btnSignUpLabel = 'Sign Up';
                     text.length > 1 &&
-                            RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                                .hasMatch(text)
+                            
+                                validEmail.hasMatch(text)
                         ? isEmailInvalid = false
                         : isEmailInvalid = true;
                   });
@@ -108,10 +121,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 isInvalid: isPwdInvalid,
                 onChanged: (text) {
                   setState(() {
-                    btnSignUpLabel = 'Sign Up';
-                    text.length < 6
-                        ? isPwdInvalid = true
-                        : isPwdInvalid = false;
+                    text.length > 5 && validCharacters.hasMatch(text)
+                        ? isPwdInvalid = false
+                        : isPwdInvalid = true;
                   });
                 },
               ),
@@ -121,30 +133,22 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 isPwdField: true,
                 isInvalid: isRPwdInvalid,
                 onChanged: (text) {
-                  setState(() {
-                    btnSignUpLabel = 'Sign Up';
-                    retypePasswordInputController.text !=
-                            passwordInputController.text
-                        ? isRPwdInvalid = true
-                        : isRPwdInvalid = false;
-                  });
+                  setState(
+                    () {
+                      retypePasswordInputController.text ==
+                              passwordInputController.text
+                          ? isRPwdInvalid = false
+                          : isRPwdInvalid = true;
+                    },
+                  );
                 },
               ),
               SizedBox(
                 height: 40,
               ),
               AuthButton(
-                btnLabel: btnSignUpLabel,
-                onPressed: () {
-                  setState(() {
-                    !isUserInvalid &&
-                            !isPwdInvalid &&
-                            !isEmailInvalid &&
-                            !isRPwdInvalid
-                        ? Get.offAll(() => HomeScreen())
-                        : btnSignUpLabel = 'Nhập sai bét kìa ?';
-                  });
-                },
+                btnLabel: 'Sign Up',
+                onPressed: clickRegister,
                 btnColor: Colors.orangeAccent,
                 textColor: Colors.black,
               ),
@@ -152,6 +156,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
           ),
         ),
       ),
+    );
+  }
+
+  void clickRegister() {
+    setState(
+      () {
+        AuthServices.register();
+      },
     );
   }
 }

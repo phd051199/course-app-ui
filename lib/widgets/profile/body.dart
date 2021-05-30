@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ProfileBody extends StatelessWidget {
+  const ProfileBody({Key key, this.fullName, this.email}) : super(key: key);
+  final fullName, email;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -20,7 +23,7 @@ class ProfileBody extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 16),
               child: Text(
-                'Cháu ông dev',
+                fullName,
                 style: GoogleFonts.getFont(
                   'Montserrat',
                   color: Colors.white,
@@ -32,7 +35,7 @@ class ProfileBody extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 6),
               child: Text(
-                '@chauOngDev',
+                email,
                 style: GoogleFonts.getFont(
                   'Montserrat',
                   color: Colors.white,

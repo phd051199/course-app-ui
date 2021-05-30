@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:course_app/widgets/video_player/toggle.dart';
+import 'package:course_app/widgets/player/toggle.dart';
 import 'package:flick_video_player/flick_video_player.dart';
 import 'package:flutter/material.dart';
 

@@ -2,6 +2,7 @@ import 'package:course_app/controllers/checkbox.dart';
 import 'package:course_app/screens/forgotpwd.dart';
 import 'package:course_app/screens/home.dart';
 import 'package:course_app/screens/register.dart';
+import 'package:course_app/services/auth.dart';
 import 'package:course_app/utils/constants.dart';
 import 'package:course_app/widgets/login/button.dart';
 import 'package:course_app/widgets/login/textfield.dart';
@@ -16,7 +17,10 @@ class LoginScreen extends StatefulWidget {
 
 bool isUserInvalid = true;
 bool isPwdInvalid = true;
-String btnSignInLabel = 'Sign In';
+String usernameInvalidMsg;
+String pwdInvalidMsg;
+TextEditingController usernameInputController = new TextEditingController();
+TextEditingController passwordInputController = new TextEditingController();
 
 class _LoginScreenState extends State<LoginScreen> {
   @override
@@ -71,26 +75,30 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               AuthInput(
                 label: 'Your Email / Username',
+                inputController: usernameInputController,
                 isInvalid: isUserInvalid,
+                errorText: isUserInvalid ? usernameInvalidMsg : null,
                 onChanged: (text) {
                   setState(() {
-                    btnSignInLabel = 'Sign In';
-                    text.length < 1
-                        ? isUserInvalid = true
-                        : isUserInvalid = false;
+                    text.length > 5 &&
+                            (validCharacters.hasMatch(text) ||
+                                validEmail.hasMatch(text))
+                        ? isUserInvalid = false
+                        : isUserInvalid = true;
                   });
                 },
               ),
               AuthInput(
                 label: 'Password',
+                inputController: passwordInputController,
                 isInvalid: isPwdInvalid,
+                errorText: isPwdInvalid ? pwdInvalidMsg : null,
                 isPwdField: true,
                 onChanged: (text) {
                   setState(() {
-                    btnSignInLabel = 'Sign In';
-                    text.length < 6
-                        ? isPwdInvalid = true
-                        : isPwdInvalid = false;
+                    text.length > 5 && validCharacters.hasMatch(text)
+                        ? isPwdInvalid = false
+                        : isPwdInvalid = true;
                   });
                 },
               ),
@@ -157,14 +165,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 42,
               ),
               AuthButton(
-                btnLabel: btnSignInLabel,
-                onPressed: () {
-                  setState(() {
-                    !isUserInvalid && !isPwdInvalid
-                        ? Get.offAll(() => HomeScreen())
-                        : btnSignInLabel = 'Nhập sai bét kìa ?';
-                  });
-                },
+                btnLabel: 'Sign In',
+                onPressed: clickLogin,
                 btnColor: Colors.orangeAccent,
                 textColor: Colors.black,
               ),
@@ -192,11 +194,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   Expanded(
                     child: Container(
-                        margin: const EdgeInsets.only(left: 15.0, right: 10.0),
-                        child: Divider(
-                          color: Colors.white,
-                          height: 1,
-                        )),
+                      margin: const EdgeInsets.only(left: 15.0, right: 10.0),
+                      child: Divider(
+                        color: Colors.white,
+                        height: 1,
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -230,6 +233,48 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ),
       ),
+    );
+  }
+
+  void onSuccess(msg) {
+    Get.offAll(() => HomeScreen());
+  }
+
+  void onError(msg) {
+    setState(
+      () {
+        if (msg == 'Invalid Username') {
+          isUserInvalid = true;
+          isPwdInvalid = true;
+          usernameInvalidMsg = 'Account does not exist';
+        } else if (msg == 'Invalid Password') {
+          isPwdInvalid = true;
+          pwdInvalidMsg = msg;
+        }
+      },
+    );
+  }
+
+  void clickLogin() {
+    setState(
+      () {
+        if (usernameInputController.text.length == 0) {
+          isUserInvalid = true;
+          usernameInvalidMsg = 'Username is required';
+        } else
+          isUserInvalid = false;
+
+        if (passwordInputController.text.length == 0) {
+          isPwdInvalid = true;
+          pwdInvalidMsg = 'Password is required';
+        } else
+          isPwdInvalid = false;
+
+        if (!isUserInvalid && !isPwdInvalid) {
+          AuthServices.login(usernameInputController.text,
+              passwordInputController.text, onSuccess, onError);
+        }
+      },
     );
   }
 }
