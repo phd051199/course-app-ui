@@ -247,6 +247,7 @@ class _LoginScreenState extends State<LoginScreen> {
           isUserInvalid = true;
           isPwdInvalid = true;
           usernameInvalidMsg = 'Account does not exist';
+          pwdInvalidMsg = null;
         } else if (msg == 'Invalid Password') {
           isPwdInvalid = true;
           pwdInvalidMsg = msg;

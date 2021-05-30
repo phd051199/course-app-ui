@@ -33,7 +33,14 @@ dependencies:
   video_player: ^2.1.1
   flick_video_player: ^0.3.1
   visibility_detector: ^0.2.0
+  flutter_native_splash: ^1.1.8+4
 
+flutter_native_splash:
+  color: "#2C2C2C"
+  image: assets/images/logo.png
+  android: true
+  ios: true
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -1,12 +1,14 @@
 import 'package:course_app/screens/login.dart';
 import 'package:course_app/utils/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 void main() {
-  runApp(
-    CourseApp(),
-  );
+  runApp(CourseApp());
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    statusBarBrightness: Brightness.dark,
+  ));
 }
 
 class CourseApp extends StatelessWidget {
