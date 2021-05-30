@@ -1,4 +1,5 @@
 import 'package:course_app/utils/constants.dart';
+import 'package:course_app/utils/validation.dart';
 import 'package:course_app/widgets/login/button.dart';
 import 'package:course_app/widgets/login/textfield.dart';
 import 'package:flutter/material.dart';
@@ -54,7 +55,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   isInvalid: isEmailInvalid,
                   onChanged: (text) {
                     setState(() {
-                      text.length > 1 && validEmail.hasMatch(text)
+                      Validation.validateEmail(text)
                           ? isEmailInvalid = false
                           : isEmailInvalid = true;
                     });

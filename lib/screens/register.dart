@@ -1,5 +1,7 @@
+import 'package:course_app/screens/success.dart';
 import 'package:course_app/services/auth.dart';
 import 'package:course_app/utils/constants.dart';
+import 'package:course_app/utils/validation.dart';
 import 'package:course_app/widgets/login/button.dart';
 import 'package:course_app/widgets/login/textfield.dart';
 import 'package:flutter/material.dart';
@@ -16,14 +18,15 @@ bool isFullnameInvalid = true;
 bool isEmailInvalid = true;
 bool isPwdInvalid = true;
 bool isRPwdInvalid = true;
-TextEditingController usernameInputController = new TextEditingController();
-TextEditingController fullnameInputController = new TextEditingController();
-TextEditingController passwordInputController = new TextEditingController();
-TextEditingController emailInputController = new TextEditingController();
-TextEditingController retypePasswordInputController =
-    new TextEditingController();
+bool btnEnabled = false;
+bool isLoading = false;
+TextEditingController usernameInputController = TextEditingController();
+TextEditingController fullnameInputController = TextEditingController();
+TextEditingController passwordInputController = TextEditingController();
+TextEditingController emailInputController = TextEditingController();
+TextEditingController retypePasswordInputController = TextEditingController();
 String usernameInvalidMsg;
-String pwdInvalidMsg;
+String emailInvalidMsg;
 
 class _RegisterScreenState extends State<RegisterScreen> {
   @override
@@ -79,13 +82,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
               AuthInput(
                 inputController: usernameInputController,
                 label: 'Username',
+                errorText: isUserInvalid ? usernameInvalidMsg : null,
                 isInvalid: isUserInvalid,
                 onChanged: (text) {
-                  setState(() {
-                    text.length > 5 && validCharacters.hasMatch(text)
-                        ? isUserInvalid = false
-                        : isUserInvalid = true;
-                  });
+                  setState(
+                    () {
+                      if (Validation.validateUsername(text)) {
+                        isUserInvalid = false;
+                        checkAll();
+                      } else {
+                        isUserInvalid = true;
+                        btnEnabled = false;
+                      }
+                    },
+                  );
                 },
               ),
               AuthInput(
@@ -93,25 +103,36 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 label: 'Full Name',
                 isInvalid: isFullnameInvalid,
                 onChanged: (text) {
-                  setState(() {
-                    text.length > 5
-                        ? isFullnameInvalid = false
-                        : isFullnameInvalid = true;
-                  });
+                  setState(
+                    () {
+                      if (text.length > 5) {
+                        isFullnameInvalid = false;
+                        checkAll();
+                      } else {
+                        isFullnameInvalid = true;
+                        btnEnabled = false;
+                      }
+                    },
+                  );
                 },
               ),
               AuthInput(
                 inputController: emailInputController,
                 label: 'Your Email',
+                errorText: isEmailInvalid ? emailInvalidMsg : null,
                 isInvalid: isEmailInvalid,
                 onChanged: (text) {
-                  setState(() {
-                    text.length > 1 &&
-                            
-                                validEmail.hasMatch(text)
-                        ? isEmailInvalid = false
-                        : isEmailInvalid = true;
-                  });
+                  setState(
+                    () {
+                      if (Validation.validateEmail(text)) {
+                        isEmailInvalid = false;
+                        checkAll();
+                      } else {
+                        isEmailInvalid = true;
+                        btnEnabled = false;
+                      }
+                    },
+                  );
                 },
               ),
               AuthInput(
@@ -120,11 +141,25 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 isPwdField: true,
                 isInvalid: isPwdInvalid,
                 onChanged: (text) {
-                  setState(() {
-                    text.length > 5 && validCharacters.hasMatch(text)
-                        ? isPwdInvalid = false
-                        : isPwdInvalid = true;
-                  });
+                  setState(
+                    () {
+                      if (Validation.validatePassword(text)) {
+                        isPwdInvalid = false;
+                        checkAll();
+                      } else {
+                        isPwdInvalid = true;
+                        btnEnabled = false;
+                      }
+                      if (retypePasswordInputController.text ==
+                          passwordInputController.text) {
+                        isRPwdInvalid = false;
+                        checkAll();
+                      } else {
+                        isRPwdInvalid = true;
+                        btnEnabled = false;
+                      }
+                    },
+                  );
                 },
               ),
               AuthInput(
@@ -135,10 +170,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 onChanged: (text) {
                   setState(
                     () {
-                      retypePasswordInputController.text ==
-                              passwordInputController.text
-                          ? isRPwdInvalid = false
-                          : isRPwdInvalid = true;
+                      if (retypePasswordInputController.text ==
+                          passwordInputController.text) {
+                        isRPwdInvalid = false;
+                        checkAll();
+                      } else {
+                        isRPwdInvalid = true;
+                        btnEnabled = false;
+                      }
                     },
                   );
                 },
@@ -147,10 +186,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 height: 40,
               ),
               AuthButton(
-                btnLabel: 'Sign Up',
-                onPressed: clickRegister,
+                icon: isLoading
+                    ? SizedBox(
+                        height: 16,
+                        width: 16,
+                        child: CircularProgressIndicator(
+                          color: Colors.white,
+                        ),
+                      )
+                    : null,
+                btnLabel: isLoading ? '' : 'Sign Up',
+                onPressed: btnEnabled ? clickRegister : null,
                 btnColor: Colors.orangeAccent,
-                textColor: Colors.black,
+                textColor: btnEnabled ? Colors.black : Colors.grey,
               ),
             ],
           ),
@@ -159,10 +207,57 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
   }
 
+  void onSuccess() {
+    isLoading = false;
+    Get.offAll(() => SuccessScreen());
+  }
+
+  void onError(msg) {
+    setState(
+      () {
+        isLoading = false;
+        if (msg == 'User Already Exists') {
+          isUserInvalid = true;
+          usernameInvalidMsg = 'user already exists';
+          btnEnabled = false;
+          isLoading = false;
+        } else {
+          isEmailInvalid = true;
+          btnEnabled = false;
+          emailInvalidMsg = 'this field must be an email';
+          isLoading = false;
+        }
+      },
+    );
+  }
+
+  void checkAll() {
+    setState(
+      () {
+        !isUserInvalid &&
+                !isFullnameInvalid &&
+                !isEmailInvalid &&
+                !isPwdInvalid &&
+                !isRPwdInvalid
+            ? btnEnabled = true
+            : btnEnabled = false;
+      },
+    );
+  }
+
   void clickRegister() {
     setState(
       () {
-        AuthServices.register();
+        btnEnabled = false;
+        isLoading = true;
+        AuthServices.register(
+          usernameInputController.text,
+          fullnameInputController.text,
+          emailInputController.text,
+          passwordInputController.text,
+          onSuccess,
+          onError,
+        );
       },
     );
   }

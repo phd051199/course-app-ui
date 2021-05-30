@@ -4,6 +4,7 @@ import 'package:course_app/screens/home.dart';
 import 'package:course_app/screens/register.dart';
 import 'package:course_app/services/auth.dart';
 import 'package:course_app/utils/constants.dart';
+import 'package:course_app/utils/validation.dart';
 import 'package:course_app/widgets/login/button.dart';
 import 'package:course_app/widgets/login/textfield.dart';
 import 'package:flutter/material.dart';
@@ -21,8 +22,8 @@ String usernameInvalidMsg;
 String pwdInvalidMsg;
 bool btnEnabled = false;
 bool isLoading = false;
-TextEditingController usernameInputController = new TextEditingController();
-TextEditingController passwordInputController = new TextEditingController();
+TextEditingController usernameInputController = TextEditingController();
+TextEditingController passwordInputController = TextEditingController();
 
 class _LoginScreenState extends State<LoginScreen> {
   @override
@@ -86,7 +87,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 onChanged: (text) {
                   setState(
                     () {
-                      if (text.length > 4 && validCharacters.hasMatch(text)) {
+                      if (text.length > 4 &&
+                          Validation.validCharacters.hasMatch(text)) {
                         isUserInvalid = false;
                         !isUserInvalid && !isPwdInvalid
                             ? btnEnabled = true
@@ -108,7 +110,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 onChanged: (text) {
                   setState(
                     () {
-                      if (text.length > 5 && validCharacters.hasMatch(text)) {
+                      if (Validation.validatePassword(text)) {
                         isPwdInvalid = false;
                         !isUserInvalid && !isPwdInvalid
                             ? btnEnabled = true
@@ -265,23 +267,24 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void onSuccess(msg) {
+    isLoading = false;
+    btnEnabled = true;
     Get.offAll(() => HomeScreen());
   }
 
   void onError(msg) {
     setState(
       () {
+        isLoading = false;
         if (msg == 'Invalid Username') {
           isUserInvalid = true;
-          usernameInvalidMsg = 'Account does not exist';
+          usernameInvalidMsg = 'account does not exists';
           btnEnabled = false;
           pwdInvalidMsg = null;
-          isLoading = false;
         } else if (msg == 'Invalid Password') {
           isPwdInvalid = true;
           btnEnabled = false;
-          pwdInvalidMsg = msg;
-          isLoading = false;
+          pwdInvalidMsg = 'invalid password';
         }
       },
     );
@@ -292,18 +295,6 @@ class _LoginScreenState extends State<LoginScreen> {
       () {
         btnEnabled = false;
         isLoading = true;
-        if (usernameInputController.text.length == 0) {
-          isUserInvalid = true;
-          usernameInvalidMsg = 'Username is required';
-        } else
-          isUserInvalid = false;
-
-        if (passwordInputController.text.length == 0) {
-          isPwdInvalid = true;
-          pwdInvalidMsg = 'Password is required';
-        } else
-          isPwdInvalid = false;
-
         if (!isUserInvalid && !isPwdInvalid) {
           AuthServices.login(usernameInputController.text,
               passwordInputController.text, onSuccess, onError);

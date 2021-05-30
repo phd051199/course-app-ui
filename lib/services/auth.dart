@@ -9,21 +9,28 @@ class AuthServices {
   static final client = http.Client();
   static AuthController authController = Get.put(AuthController());
 
-  static register() async {
-    await client.post(
+  static register(uname, fname, email, password, onSuccess, onError) async {
+    final response = await client.post(
       Uri.parse('https://api.phamduy.host/register'),
       headers: {
         'Content-Type': 'application/json; charset=UTF-8',
       },
       body: jsonEncode(
         {
-          "username": "duy",
-          "password": "111111",
-          "email": "duy@gmail.com",
-          "fullName": "Pham Duy"
+          "username": "$uname",
+          "password": "$password",
+          "email": "$email",
+          "fullName": "$fname"
         },
       ),
     );
+    final jsonString = loginFromJson(response.body);
+    final res = jsonString;
+    if (response.statusCode == 201) {
+      onSuccess();
+    } else {
+      onError(res.message);
+    }
   }
 
   static login(username, password, onSuccess, onError) async {
