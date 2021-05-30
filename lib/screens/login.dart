@@ -87,8 +87,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 onChanged: (text) {
                   setState(
                     () {
-                      if (text.length > 4 &&
-                          Validation.validCharacters.hasMatch(text)) {
+                      if (Validation.validateUsername(text) ||
+                          Validation.validateEmail(text)) {
                         isUserInvalid = false;
                         !isUserInvalid && !isPwdInvalid
                             ? btnEnabled = true
@@ -171,7 +171,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   GestureDetector(
                     onTap: () => Get.to(() => ForgotPasswordScreen()),
                     child: Text(
-                      'Forgot password?',
+                      'Forgot password ?',
                       style: GoogleFonts.getFont(
                         'Montserrat',
                         color: Colors.orangeAccent,
