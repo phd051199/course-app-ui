@@ -36,25 +36,23 @@ class AuthButton extends StatelessWidget {
                   fontSize: 16,
                 ),
               )
-            : Container(
-                width: 250,
-                child: Row(
-                  children: [
-                    icon,
-                    SizedBox(
-                      width: 15.5,
+            : Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  icon,
+                  SizedBox(
+                    width: 15.5,
+                  ),
+                  Text(
+                    btnLabel,
+                    style: GoogleFonts.getFont(
+                      'Montserrat',
+                      color: textColor,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 16,
                     ),
-                    Text(
-                      btnLabel,
-                      style: GoogleFonts.getFont(
-                        'Montserrat',
-                        color: textColor,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 16,
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
       ),
     );

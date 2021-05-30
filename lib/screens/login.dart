@@ -19,6 +19,8 @@ bool isUserInvalid = true;
 bool isPwdInvalid = true;
 String usernameInvalidMsg;
 String pwdInvalidMsg;
+bool btnEnabled = false;
+bool isLoading = false;
 TextEditingController usernameInputController = new TextEditingController();
 TextEditingController passwordInputController = new TextEditingController();
 
@@ -48,13 +50,16 @@ class _LoginScreenState extends State<LoginScreen> {
               Row(
                 children: [
                   Text(
-                    'Don’t have an account? ',
+                    'Don’t have an account ?',
                     style: GoogleFonts.getFont(
                       'Montserrat',
                       color: primaryTextColor,
                       fontWeight: FontWeight.w400,
                       fontSize: 16,
                     ),
+                  ),
+                  SizedBox(
+                    width: 8,
                   ),
                   GestureDetector(
                     onTap: () => Get.to(() => RegisterScreen()),
@@ -79,13 +84,19 @@ class _LoginScreenState extends State<LoginScreen> {
                 isInvalid: isUserInvalid,
                 errorText: isUserInvalid ? usernameInvalidMsg : null,
                 onChanged: (text) {
-                  setState(() {
-                    text.length > 5 &&
-                            (validCharacters.hasMatch(text) ||
-                                validEmail.hasMatch(text))
-                        ? isUserInvalid = false
-                        : isUserInvalid = true;
-                  });
+                  setState(
+                    () {
+                      if (text.length > 4 && validCharacters.hasMatch(text)) {
+                        isUserInvalid = false;
+                        !isUserInvalid && !isPwdInvalid
+                            ? btnEnabled = true
+                            : btnEnabled = false;
+                      } else {
+                        isUserInvalid = true;
+                        btnEnabled = false;
+                      }
+                    },
+                  );
                 },
               ),
               AuthInput(
@@ -95,11 +106,19 @@ class _LoginScreenState extends State<LoginScreen> {
                 errorText: isPwdInvalid ? pwdInvalidMsg : null,
                 isPwdField: true,
                 onChanged: (text) {
-                  setState(() {
-                    text.length > 5 && validCharacters.hasMatch(text)
-                        ? isPwdInvalid = false
-                        : isPwdInvalid = true;
-                  });
+                  setState(
+                    () {
+                      if (text.length > 5 && validCharacters.hasMatch(text)) {
+                        isPwdInvalid = false;
+                        !isUserInvalid && !isPwdInvalid
+                            ? btnEnabled = true
+                            : btnEnabled = false;
+                      } else {
+                        isPwdInvalid = true;
+                        btnEnabled = false;
+                      }
+                    },
+                  );
                 },
               ),
               SizedBox(
@@ -165,10 +184,19 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 42,
               ),
               AuthButton(
-                btnLabel: 'Sign In',
-                onPressed: clickLogin,
+                icon: isLoading
+                    ? SizedBox(
+                        height: 16,
+                        width: 16,
+                        child: CircularProgressIndicator(
+                          color: Colors.white,
+                        ),
+                      )
+                    : null,
+                btnLabel: isLoading ? '' : 'Sign In',
+                onPressed: btnEnabled ? clickLogin : null,
                 btnColor: Colors.orangeAccent,
-                textColor: Colors.black,
+                textColor: btnEnabled ? Colors.black : Colors.grey,
               ),
               SizedBox(
                 height: 26,
@@ -245,12 +273,15 @@ class _LoginScreenState extends State<LoginScreen> {
       () {
         if (msg == 'Invalid Username') {
           isUserInvalid = true;
-          isPwdInvalid = true;
           usernameInvalidMsg = 'Account does not exist';
+          btnEnabled = false;
           pwdInvalidMsg = null;
+          isLoading = false;
         } else if (msg == 'Invalid Password') {
           isPwdInvalid = true;
+          btnEnabled = false;
           pwdInvalidMsg = msg;
+          isLoading = false;
         }
       },
     );
@@ -259,6 +290,8 @@ class _LoginScreenState extends State<LoginScreen> {
   void clickLogin() {
     setState(
       () {
+        btnEnabled = false;
+        isLoading = true;
         if (usernameInputController.text.length == 0) {
           isUserInvalid = true;
           usernameInvalidMsg = 'Username is required';
