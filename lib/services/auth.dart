@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:course_app/controllers/auth/login.dart';
 import 'package:course_app/models/login.dart';
+import 'package:course_app/models/register.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
@@ -31,7 +32,7 @@ class AuthServices {
         },
       ),
     );
-    final jsonString = loginFromJson(response.body);
+    final jsonString = registerFromJson(response.body);
     final res = jsonString;
     if (response.statusCode == 201) {
       onSuccess();
