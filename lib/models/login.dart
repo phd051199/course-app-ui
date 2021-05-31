@@ -11,11 +11,11 @@ String loginToJson(Login data) => json.encode(data.toJson());
 class Login {
   Login({
     required this.message,
-    required this.token,
+    this.token,
   });
 
   String message;
-  String token;
+  String? token;
 
   factory Login.fromJson(Map<String, dynamic> json) => Login(
         message: json["message"],

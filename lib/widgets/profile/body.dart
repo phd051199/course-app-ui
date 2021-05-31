@@ -1,3 +1,4 @@
+import 'package:course_app/utils/constants.dart';
 import 'package:course_app/widgets/course/my.dart';
 import 'package:course_app/widgets/home/title.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +30,7 @@ class ProfileBody extends StatelessWidget {
               child: Text(
                 fullName,
                 style: GoogleFonts.montserrat(
-                  color: Colors.white,
+                  color: primaryTextColor,
                   fontWeight: FontWeight.w600,
                   fontSize: 24,
                 ),
@@ -40,7 +41,7 @@ class ProfileBody extends StatelessWidget {
               child: Text(
                 email,
                 style: GoogleFonts.montserrat(
-                  color: Colors.white,
+                  color: primaryTextColor,
                   fontWeight: FontWeight.w400,
                   fontSize: 16,
                 ),
@@ -49,7 +50,7 @@ class ProfileBody extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 20),
               child: Divider(
-                color: Colors.white,
+                color: primaryTextColor,
                 height: 1,
               ),
             ),

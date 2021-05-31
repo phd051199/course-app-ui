@@ -49,7 +49,9 @@ class AuthInput extends StatelessWidget {
               ),
               focusedBorder: UnderlineInputBorder(
                 borderSide: BorderSide(
-                  color: isInvalid ? Colors.red : Colors.green,
+                  color: inputController.text.length > 0
+                      ? (isInvalid ? Colors.red : Colors.green)
+                      : primaryTextColor,
                 ),
               ),
             ),
@@ -61,15 +63,17 @@ class AuthInput extends StatelessWidget {
             cursorColor: primaryTextColor,
           ),
         ),
-        isInvalid
-            ? Icon(
-                Icons.close,
-                color: Colors.red,
-              )
-            : Icon(
-                Icons.check,
-                color: Colors.green,
-              ),
+        inputController.text.length > 0
+            ? (isInvalid
+                ? Icon(
+                    Icons.close,
+                    color: Colors.red,
+                  )
+                : Icon(
+                    Icons.check,
+                    color: Colors.green,
+                  ))
+            : SizedBox(),
       ],
     );
   }

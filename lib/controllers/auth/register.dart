@@ -16,14 +16,14 @@ class RegisterController extends GetxController {
     Get.offAll(() => SuccessScreen());
   }
 
-  void onRegError(msg) {
+  void onRegError(String msg) {
     btnDispose();
     if (msg == 'User Already Exists') {
       isUserInvalid(true);
-      usernameInvalidMsg('user already exists');
+      usernameInvalidMsg('User already exists');
     } else {
       isEmailInvalid(true);
-      emailInvalidMsg('this field must be an email');
+      emailInvalidMsg('Must be an email');
     }
   }
 
@@ -37,7 +37,7 @@ class RegisterController extends GetxController {
         : btnEnabled(false);
   }
 
-  void inputUsernameOnchanged(text) {
+  void inputUsernameOnchanged(String text) {
     if (GetUtils.isUsername(text)) {
       isUserInvalid(false);
       checkAll();
@@ -48,7 +48,7 @@ class RegisterController extends GetxController {
     }
   }
 
-  void inputFullnameOnchanged(text) {
+  void inputFullnameOnchanged(String text) {
     if (text.length > 5) {
       isFullnameInvalid(false);
       checkAll();
@@ -58,7 +58,7 @@ class RegisterController extends GetxController {
     }
   }
 
-  void inputEmailOnchanged(text) {
+  void inputEmailOnchanged(String text) {
     if (GetUtils.isEmail(text)) {
       isEmailInvalid(false);
       checkAll();
@@ -69,7 +69,7 @@ class RegisterController extends GetxController {
     }
   }
 
-  void inputEmailFGOnchanged(text) {
+  void inputEmailFGOnchanged(String text) {
     if (GetUtils.isEmail(text)) {
       isEmailInvalid(false);
       btnEnabled(true);
@@ -80,7 +80,7 @@ class RegisterController extends GetxController {
     }
   }
 
-  void inputPasswordOnchanged(text) {
+  void inputPasswordOnchanged(String text) {
     if (GetUtils.isPassport(text)) {
       isPwdInvalid(false);
       checkAll();

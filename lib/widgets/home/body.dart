@@ -7,7 +7,7 @@ import 'package:course_app/widgets/home/title.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class Body extends StatelessWidget {
+class HomeBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final CourseController courseController = Get.put(CourseController());

@@ -9,7 +9,14 @@ class AuthServices {
   static final client = http.Client();
   static LoginController loginController = Get.put(LoginController());
 
-  static register(uname, fname, email, password, onSuccess, onError) async {
+  static Future register(
+    String uname,
+    String fname,
+    String email,
+    String password,
+    Function onSuccess,
+    Function onError,
+  ) async {
     final response = await client.post(
       Uri.parse('https://api.phamduy.host/register'),
       headers: {
@@ -33,7 +40,12 @@ class AuthServices {
     }
   }
 
-  static login(username, password, onSuccess, onError) async {
+  static Future login(
+    String username,
+    String password,
+    Function onSuccess,
+    Function onError,
+  ) async {
     final response = await client.post(
         Uri.parse('https://api.phamduy.host/login'),
         headers: {
@@ -47,13 +59,13 @@ class AuthServices {
         jsonDecode(
           ascii.decode(
             base64.decode(
-              base64.normalize(res.token.split(".")[1]),
+              base64.normalize(res.token!.split(".")[1]),
             ),
           ),
         )['fname'],
       );
       loginController.jwt(res.token);
-      await onSuccess(res.message);
+      onSuccess();
     } else {
       onError(res.message);
     }

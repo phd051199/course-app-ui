@@ -1,4 +1,5 @@
 import 'package:course_app/controllers/auth/login.dart';
+import 'package:course_app/utils/constants.dart';
 import 'package:course_app/widgets/home/body.dart';
 import 'package:course_app/widgets/menu/menu.dart';
 import 'package:course_app/widgets/home/search.dart';
@@ -30,7 +31,7 @@ class HomeScreen extends StatelessWidget {
         title: Text(
           'Hi, ${loginController.currentUser.value} 👋',
           style: GoogleFonts.montserrat(
-            color: Colors.white,
+            color: primaryTextColor,
             fontWeight: FontWeight.w600,
             fontSize: 20,
           ),
@@ -63,7 +64,7 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: Body(),
+      body: HomeBody(),
     );
   }
 }

@@ -70,7 +70,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                 btnLabel: 'Sign in',
                 onPressed: () => Get.back(),
                 btnColor: Color(0xff444444),
-                textColor: Colors.white,
+                textColor: primaryTextColor,
               ),
             ],
           ),

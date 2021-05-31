@@ -121,7 +121,7 @@ class RegisterScreen extends StatelessWidget {
                           height: 16,
                           width: 16,
                           child: CircularProgressIndicator(
-                            color: Colors.white,
+                            color: secondaryBGColor,
                           ),
                         )
                       : null,

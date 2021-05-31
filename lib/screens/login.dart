@@ -115,7 +115,7 @@ class LoginScreen extends StatelessWidget {
                           height: 16,
                           width: 16,
                           child: CircularProgressIndicator(
-                            color: Colors.white,
+                            color: secondaryBGColor,
                           ),
                         )
                       : null,
@@ -195,7 +195,7 @@ class RememberCheckbox extends StatelessWidget {
               width: 20,
               child: Checkbox(
                 activeColor: Colors.green,
-                checkColor: Colors.white,
+                checkColor: primaryTextColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
@@ -236,7 +236,7 @@ class DividerText extends StatelessWidget {
       children: [
         Expanded(
           child: Divider(
-            color: Colors.white,
+            color: primaryTextColor,
             height: 1,
           ),
         ),
@@ -253,7 +253,7 @@ class DividerText extends StatelessWidget {
         ),
         Expanded(
           child: Divider(
-            color: Colors.white,
+            color: primaryTextColor,
             height: 1,
           ),
         ),

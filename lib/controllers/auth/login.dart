@@ -11,23 +11,23 @@ class LoginController extends GetxController {
   RxBool btnEnabled = false.obs;
   RxBool isLoading = false.obs;
 
-  void onLoginError(msg) {
+  void onLoginError(String msg) {
     btnDispose();
     if (msg == 'Invalid Username') {
       isUserInvalid(true);
-      usernameInvalidMsg('this account does not exists');
-      pwdInvalidMsg(null);
+      usernameInvalidMsg('Account does not exists');
+      pwdInvalidMsg('');
     } else if (msg == 'Invalid Password') {
       isPwdInvalid(true);
-      pwdInvalidMsg('invalid password');
+      pwdInvalidMsg(msg);
     }
   }
 
-  void onLoginSuccess(msg) {
+  void onLoginSuccess() {
     Get.offAll(() => HomeScreen());
   }
 
-  void inputUsernameOnchanged(text) {
+  void inputUsernameOnchanged(String text) {
     if (GetUtils.isUsername(text) || GetUtils.isEmail(text)) {
       isUserInvalid(false);
       !isUserInvalid.value && !isPwdInvalid.value
@@ -40,7 +40,7 @@ class LoginController extends GetxController {
     }
   }
 
-  void inputPasswordOnchanged(text) {
+  void inputPasswordOnchanged(String text) {
     if (GetUtils.isPassport(text)) {
       isPwdInvalid(false);
       !isUserInvalid.value && !isPwdInvalid.value
