@@ -1,13 +1,13 @@
 import 'dart:convert';
 
-import 'package:course_app/controllers/auth.dart';
+import 'package:course_app/controllers/auth/login.dart';
 import 'package:course_app/models/login.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class AuthServices {
   static final client = http.Client();
-  static AuthController authController = Get.put(AuthController());
+  static LoginController loginController = Get.put(LoginController());
 
   static register(uname, fname, email, password, onSuccess, onError) async {
     final response = await client.post(
@@ -43,7 +43,7 @@ class AuthServices {
     final jsonString = loginFromJson(response.body);
     final res = jsonString;
     if (response.statusCode == 201) {
-      authController.setUser(
+      loginController.currentUser(
         jsonDecode(
           ascii.decode(
             base64.decode(
@@ -52,7 +52,7 @@ class AuthServices {
           ),
         )['fname'],
       );
-      authController.setToken(res.token);
+      loginController.jwt(res.token);
       await onSuccess(res.message);
     } else {
       onError(res.message);

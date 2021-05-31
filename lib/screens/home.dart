@@ -1,4 +1,4 @@
-import 'package:course_app/controllers/auth.dart';
+import 'package:course_app/controllers/auth/login.dart';
 import 'package:course_app/widgets/home/body.dart';
 import 'package:course_app/widgets/menu/menu.dart';
 import 'package:course_app/widgets/home/search.dart';
@@ -12,7 +12,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final AuthController authController = Get.put(AuthController());
+    final LoginController loginController = Get.put(LoginController());
     return Scaffold(
       key: scaffoldKey,
       drawer: MenuDrawer(),
@@ -28,7 +28,7 @@ class HomeScreen extends StatelessWidget {
           onPressed: () => scaffoldKey.currentState.openDrawer(),
         ),
         title: Text(
-          'Hi, ${authController.user.value} 👋',
+          'Hi, ${loginController.currentUser.value} 👋',
           style: GoogleFonts.getFont(
             'Montserrat',
             color: Colors.white,
@@ -47,7 +47,7 @@ class HomeScreen extends StatelessWidget {
             child: InkWell(
               onTap: () => Get.to(
                 () => ProfileScreen(
-                  fullName: authController.user.value,
+                  fullName: loginController.currentUser.value,
                 ),
               ),
               child: Container(
