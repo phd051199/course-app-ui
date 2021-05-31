@@ -25,8 +25,7 @@ class ProfileAppBar extends StatelessWidget {
       ),
       title: Text(
         'Profile',
-        style: GoogleFonts.getFont(
-          'Montserrat',
+        style: GoogleFonts.montserrat(
           color: Colors.white,
           fontWeight: FontWeight.w600,
           fontSize: 20,

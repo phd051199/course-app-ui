@@ -25,8 +25,7 @@ class PlayerScreen extends StatelessWidget {
         ),
         title: Text(
           'Home',
-          style: GoogleFonts.getFont(
-            'Montserrat',
+          style: GoogleFonts.montserrat(
             color: Colors.white,
             fontWeight: FontWeight.w600,
             fontSize: 20,
@@ -40,40 +39,35 @@ class PlayerScreen extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 4),
-              child: Container(
-                child: Text(
-                  title,
-                  style: GoogleFonts.getFont(
-                    'Montserrat',
-                    fontWeight: FontWeight.w400,
-                    fontSize: 16,
-                    color: Colors.white,
-                  ),
+              child: Text(
+                title,
+                style: GoogleFonts.montserrat(
+                  fontWeight: FontWeight.w400,
+                  fontSize: 16,
+                  color: Colors.white,
                 ),
               ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 4),
-              child: Container(
-                child: GetBuilder<PlayerController>(
-                  init: PlayerController(videoLink),
-                  builder: (_) {
-                    return Container(
-                      height: !context.isLandscape ? 225 : Get.width,
-                      child: FlickVideoPlayer(
-                        flickManager: _.flickManager,
-                        preferredDeviceOrientation: [
-                          DeviceOrientation.landscapeRight,
-                          DeviceOrientation.landscapeLeft,
-                          DeviceOrientation.portraitUp
-                        ],
-                        flickVideoWithControls: FlickVideoWithControls(
-                          controls: PlayerControls(),
-                        ),
+              child: GetBuilder<PlayerController>(
+                init: PlayerController(videoLink),
+                builder: (_) {
+                  return SizedBox(
+                    height: !context.isLandscape ? 225 : Get.width,
+                    child: FlickVideoPlayer(
+                      flickManager: _.flickManager,
+                      preferredDeviceOrientation: [
+                        DeviceOrientation.landscapeRight,
+                        DeviceOrientation.landscapeLeft,
+                        DeviceOrientation.portraitUp
+                      ],
+                      flickVideoWithControls: FlickVideoWithControls(
+                        controls: PlayerControls(),
                       ),
-                    );
-                  },
-                ),
+                    ),
+                  );
+                },
               ),
             ),
             Row(
@@ -158,8 +152,7 @@ class SubTitle extends StatelessWidget {
         onTap: () {},
         leading: Text(
           time,
-          style: GoogleFonts.getFont(
-            'Montserrat',
+          style: GoogleFonts.montserrat(
             fontWeight: FontWeight.w400,
             fontSize: 16,
             color: Colors.white,
@@ -167,8 +160,7 @@ class SubTitle extends StatelessWidget {
         ),
         title: Text(
           sub,
-          style: GoogleFonts.getFont(
-            'Montserrat',
+          style: GoogleFonts.montserrat(
             fontWeight: FontWeight.w400,
             fontSize: 16,
             color: Colors.white,
@@ -196,8 +188,7 @@ class LanguageDropdown extends StatelessWidget {
           DropdownMenuItem(
             child: Text(
               'English',
-              style: GoogleFonts.getFont(
-                'Montserrat',
+              style: GoogleFonts.montserrat(
                 fontWeight: FontWeight.w400,
                 fontSize: 14,
                 color: Colors.white,
@@ -208,8 +199,7 @@ class LanguageDropdown extends StatelessWidget {
           DropdownMenuItem(
             child: Text(
               'Tiếng việt',
-              style: GoogleFonts.getFont(
-                'Montserrat',
+              style: GoogleFonts.montserrat(
                 fontWeight: FontWeight.w400,
                 fontSize: 14,
                 color: Colors.white,
@@ -239,7 +229,7 @@ class ControllerButton extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 4),
       child: InkWell(
         onTap: onControllerPress,
-        child: Container(
+        child: SizedBox(
           width: 25,
           height: double.infinity,
           child: Icon(
@@ -276,8 +266,7 @@ class ReactButton extends StatelessWidget {
           ),
           Text(
             '$count' ?? '0',
-            style: GoogleFonts.getFont(
-              'Montserrat',
+            style: GoogleFonts.montserrat(
               fontWeight: FontWeight.w400,
               fontSize: 14,
               color: Colors.white,

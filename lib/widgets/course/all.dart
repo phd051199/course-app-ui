@@ -8,7 +8,7 @@ class CoursesList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 17),
+      padding: const EdgeInsets.only(top: 17, left: 4),
       child: SingleChildScrollView(
           child: GetX<CourseController>(
         init: CourseController(),

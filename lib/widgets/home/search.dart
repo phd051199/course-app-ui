@@ -27,8 +27,7 @@ class SearchBar extends StatelessWidget {
               child: TextField(
                 decoration: InputDecoration(
                   hintText: 'Search course',
-                  hintStyle: GoogleFonts.getFont(
-                    'Montserrat',
+                  hintStyle: GoogleFonts.montserrat(
                     fontWeight: FontWeight.w400,
                     fontSize: 16,
                   ),

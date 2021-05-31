@@ -32,8 +32,7 @@ class AuthInput extends StatelessWidget {
             decoration: InputDecoration(
               labelText: label,
               errorText: errorText,
-              labelStyle: GoogleFonts.getFont(
-                'Montserrat',
+              labelStyle: GoogleFonts.montserrat(
                 color: primaryTextColor,
                 fontWeight: FontWeight.w400,
                 fontSize: 16,
@@ -49,8 +48,7 @@ class AuthInput extends StatelessWidget {
                 ),
               ),
             ),
-            style: GoogleFonts.getFont(
-              'Montserrat',
+            style: GoogleFonts.montserrat(
               color: primaryTextColor,
               fontWeight: FontWeight.w400,
               fontSize: 16,

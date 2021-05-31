@@ -22,31 +22,20 @@ class Body extends StatelessWidget {
       },
       child: ListView(
         children: [
-          Column(
-            children: [
-              Container(
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(22, 33, 25, 0),
-                      child: MainTitle(
-                        title: 'My courses',
-                      ),
-                    ),
-                    MyCoursesList(),
-                    Padding(
-                      padding:
-                          const EdgeInsets.only(top: 38, left: 25, right: 22),
-                      child: MainTitle(
-                        title: 'Courses',
-                      ),
-                    ),
-                    CoursesList(),
-                  ],
-                ),
-              )
-            ],
+          Padding(
+            padding: const EdgeInsets.fromLTRB(22, 33, 25, 0),
+            child: MainTitle(
+              title: 'My courses',
+            ),
           ),
+          MyCoursesList(),
+          Padding(
+            padding: const EdgeInsets.only(top: 38, left: 25, right: 22),
+            child: MainTitle(
+              title: 'Courses',
+            ),
+          ),
+          CoursesList(),
         ],
       ),
     );

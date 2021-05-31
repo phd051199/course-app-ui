@@ -24,8 +24,7 @@ class ProfileBody extends StatelessWidget {
               padding: const EdgeInsets.only(top: 16),
               child: Text(
                 fullName,
-                style: GoogleFonts.getFont(
-                  'Montserrat',
+                style: GoogleFonts.montserrat(
                   color: Colors.white,
                   fontWeight: FontWeight.w600,
                   fontSize: 24,
@@ -36,8 +35,7 @@ class ProfileBody extends StatelessWidget {
               padding: const EdgeInsets.only(top: 6),
               child: Text(
                 email,
-                style: GoogleFonts.getFont(
-                  'Montserrat',
+                style: GoogleFonts.montserrat(
                   color: Colors.white,
                   fontWeight: FontWeight.w400,
                   fontSize: 16,

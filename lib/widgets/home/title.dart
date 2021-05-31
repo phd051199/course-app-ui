@@ -13,8 +13,7 @@ class MainTitle extends StatelessWidget {
       children: [
         Text(
           title,
-          style: GoogleFonts.getFont(
-            'Montserrat',
+          style: GoogleFonts.montserrat(
             fontSize: 20,
             fontWeight: FontWeight.w600,
             color: Colors.white,
@@ -22,8 +21,7 @@ class MainTitle extends StatelessWidget {
         ),
         Text(
           'View all',
-          style: GoogleFonts.getFont(
-            'Montserrat',
+          style: GoogleFonts.montserrat(
             fontSize: 16,
             color: secondaryBGColor,
             fontWeight: FontWeight.w400,

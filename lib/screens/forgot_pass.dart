@@ -22,8 +22,7 @@ class ForgotPasswordScreen extends StatelessWidget {
             children: [
               Text(
                 'Forgot Password?',
-                style: GoogleFonts.getFont(
-                  'Montserrat',
+                style: GoogleFonts.montserrat(
                   color: primaryTextColor,
                   fontSize: 32,
                   fontWeight: FontWeight.w600,
@@ -34,8 +33,7 @@ class ForgotPasswordScreen extends StatelessWidget {
               ),
               Text(
                 'Enter the email address associated with your account.',
-                style: GoogleFonts.getFont(
-                  'Montserrat',
+                style: GoogleFonts.montserrat(
                   color: Colors.grey,
                   fontWeight: FontWeight.w300,
                   fontSize: 16,

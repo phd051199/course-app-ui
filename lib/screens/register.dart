@@ -28,8 +28,7 @@ class RegisterScreen extends StatelessWidget {
               children: [
                 Text(
                   'Sign Up',
-                  style: GoogleFonts.getFont(
-                    'Montserrat',
+                  style: GoogleFonts.montserrat(
                     color: primaryTextColor,
                     fontSize: 32,
                     fontWeight: FontWeight.w600,
@@ -42,19 +41,17 @@ class RegisterScreen extends StatelessWidget {
                   children: [
                     Text(
                       'I have an account! ',
-                      style: GoogleFonts.getFont(
-                        'Montserrat',
+                      style: GoogleFonts.montserrat(
                         color: primaryTextColor,
                         fontWeight: FontWeight.w400,
                         fontSize: 16,
                       ),
                     ),
-                    InkWell(
+                    GestureDetector(
                       onTap: () => Get.back(),
                       child: Text(
                         'Click here',
-                        style: GoogleFonts.getFont(
-                          'Montserrat',
+                        style: GoogleFonts.montserrat(
                           color: Colors.orangeAccent,
                           fontWeight: FontWeight.w400,
                           fontSize: 16,

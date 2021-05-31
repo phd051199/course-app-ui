@@ -8,7 +8,7 @@ class MyCoursesList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 17),
+      padding: const EdgeInsets.only(top: 17, left: 4),
       child: SingleChildScrollView(
         child: GetX<MyCourseController>(
           init: MyCourseController(),
@@ -17,7 +17,8 @@ class MyCoursesList extends StatelessWidget {
             child: _.isLoading.value
                 ? Center(
                     child: CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(secondaryBGColor),
+                      valueColor:
+                          AlwaysStoppedAnimation<Color>(secondaryBGColor),
                     ),
                   )
                 : ListView.builder(

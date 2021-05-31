@@ -29,8 +29,7 @@ class HomeScreen extends StatelessWidget {
         ),
         title: Text(
           'Hi, ${loginController.currentUser.value} 👋',
-          style: GoogleFonts.getFont(
-            'Montserrat',
+          style: GoogleFonts.montserrat(
             color: Colors.white,
             fontWeight: FontWeight.w600,
             fontSize: 20,
@@ -44,13 +43,13 @@ class HomeScreen extends StatelessWidget {
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 24.0),
-            child: InkWell(
+            child: GestureDetector(
               onTap: () => Get.to(
                 () => ProfileScreen(
                   fullName: loginController.currentUser.value,
                 ),
               ),
-              child: Container(
+              child: DecoratedBox(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(45),
                 ),

@@ -18,8 +18,7 @@ class SuccessScreen extends StatelessWidget {
             children: [
               Text(
                 'Sign Up Successful 🎉',
-                style: GoogleFonts.getFont(
-                  'Montserrat',
+                style: GoogleFonts.montserrat(
                   color: primaryTextColor,
                   fontSize: 32,
                   fontWeight: FontWeight.w600,
@@ -30,8 +29,7 @@ class SuccessScreen extends StatelessWidget {
               ),
               Text(
                 'Thanks for signing up. Welcome to our community. We are happy to have you on board.',
-                style: GoogleFonts.getFont(
-                  'Montserrat',
+                style: GoogleFonts.montserrat(
                   color: Colors.grey,
                   fontWeight: FontWeight.w300,
                   fontSize: 16,

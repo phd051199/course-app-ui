@@ -27,8 +27,7 @@ class LoginScreen extends StatelessWidget {
               children: [
                 Text(
                   'Sign In',
-                  style: GoogleFonts.getFont(
-                    'Montserrat',
+                  style: GoogleFonts.montserrat(
                     color: primaryTextColor,
                     fontSize: 32,
                     fontWeight: FontWeight.w600,
@@ -41,8 +40,7 @@ class LoginScreen extends StatelessWidget {
                   children: [
                     Text(
                       'Don’t have an account ?',
-                      style: GoogleFonts.getFont(
-                        'Montserrat',
+                      style: GoogleFonts.montserrat(
                         color: primaryTextColor,
                         fontWeight: FontWeight.w400,
                         fontSize: 16,
@@ -51,12 +49,11 @@ class LoginScreen extends StatelessWidget {
                     SizedBox(
                       width: 8,
                     ),
-                    InkWell(
+                    GestureDetector(
                       onTap: () => Get.to(() => RegisterScreen()),
                       child: Text(
                         'Click here',
-                        style: GoogleFonts.getFont(
-                          'Montserrat',
+                        style: GoogleFonts.montserrat(
                           color: Colors.orangeAccent,
                           fontWeight: FontWeight.w400,
                           fontSize: 16,
@@ -95,12 +92,11 @@ class LoginScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     RememberCheckbox(),
-                    InkWell(
+                    GestureDetector(
                       onTap: () => Get.to(() => ForgotPasswordScreen()),
                       child: Text(
                         'Forgot password ?',
-                        style: GoogleFonts.getFont(
-                          'Montserrat',
+                        style: GoogleFonts.montserrat(
                           color: Colors.orangeAccent,
                           fontWeight: FontWeight.w400,
                           fontSize: 16,
@@ -163,12 +159,10 @@ class LoginScreen extends StatelessWidget {
                   onPressed: () {},
                   btnColor: Colors.white,
                   textColor: Colors.black,
-                  icon: Container(
-                    child: Image(
-                      height: 18,
-                      width: 24,
-                      image: AssetImage('assets/images/gg.png'),
-                    ),
+                  icon: Image(
+                    height: 18,
+                    width: 24,
+                    image: AssetImage('assets/images/gg.png'),
                   ),
                 ),
               ],
@@ -189,16 +183,13 @@ class RememberCheckbox extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetX<CheckboxController>(
       init: CheckboxController(),
-      builder: (_) => InkWell(
+      builder: (_) => GestureDetector(
         onTap: () {
           _.isRememberChecked(!_.isRememberChecked.value);
         },
         child: Row(
           children: [
-            Container(
-              margin: EdgeInsets.only(
-                right: 10,
-              ),
+            SizedBox(
               height: 20,
               width: 20,
               child: Checkbox(
@@ -213,10 +204,12 @@ class RememberCheckbox extends StatelessWidget {
                 },
               ),
             ),
+            SizedBox(
+              width: 12,
+            ),
             Text(
               'Remember me',
-              style: GoogleFonts.getFont(
-                'Montserrat',
+              style: GoogleFonts.montserrat(
                 color: primaryTextColor,
                 fontWeight: FontWeight.w500,
                 fontSize: 16,
@@ -241,30 +234,26 @@ class DividerText extends StatelessWidget {
     return Row(
       children: [
         Expanded(
-          child: Container(
-            margin: const EdgeInsets.only(left: 10.0, right: 15.0),
-            child: Divider(
-              color: Colors.white,
-              height: 1,
-            ),
+          child: Divider(
+            color: Colors.white,
+            height: 1,
           ),
         ),
-        Text(
-          text,
-          style: GoogleFonts.getFont(
-            'Montserrat',
-            color: primaryTextColor,
-            fontWeight: FontWeight.w400,
-            fontSize: 14,
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12),
+          child: Text(
+            text,
+            style: GoogleFonts.montserrat(
+              color: primaryTextColor,
+              fontWeight: FontWeight.w400,
+              fontSize: 14,
+            ),
           ),
         ),
         Expanded(
-          child: Container(
-            margin: const EdgeInsets.only(left: 15.0, right: 10.0),
-            child: Divider(
-              color: Colors.white,
-              height: 1,
-            ),
+          child: Divider(
+            color: Colors.white,
+            height: 1,
           ),
         ),
       ],

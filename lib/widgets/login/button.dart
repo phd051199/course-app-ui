@@ -14,7 +14,7 @@ class AuthButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: double.infinity,
       height: 54,
       child: ElevatedButton(
@@ -29,8 +29,7 @@ class AuthButton extends StatelessWidget {
         child: icon == null
             ? Text(
                 btnLabel,
-                style: GoogleFonts.getFont(
-                  'Montserrat',
+                style: GoogleFonts.montserrat(
                   color: textColor,
                   fontWeight: FontWeight.w500,
                   fontSize: 16,
@@ -45,8 +44,7 @@ class AuthButton extends StatelessWidget {
                   ),
                   Text(
                     btnLabel,
-                    style: GoogleFonts.getFont(
-                      'Montserrat',
+                    style: GoogleFonts.montserrat(
                       color: textColor,
                       fontWeight: FontWeight.w500,
                       fontSize: 16,

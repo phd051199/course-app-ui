@@ -42,6 +42,7 @@ class RegisterController extends GetxController {
       isUserInvalid(false);
       checkAll();
     } else {
+      usernameInvalidMsg('');
       isUserInvalid(true);
       btnEnabled(false);
     }
@@ -62,6 +63,7 @@ class RegisterController extends GetxController {
       isEmailInvalid(false);
       checkAll();
     } else {
+      emailInvalidMsg('');
       isEmailInvalid(true);
       btnEnabled(false);
     }
@@ -72,6 +74,7 @@ class RegisterController extends GetxController {
       isEmailInvalid(false);
       btnEnabled(true);
     } else {
+      emailInvalidMsg('');
       isEmailInvalid(true);
       btnEnabled(false);
     }

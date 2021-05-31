@@ -24,112 +24,105 @@ class CourseCard extends StatelessWidget {
               videoLink: course.videoLink,
             ),
           ),
-          child: Card(
-            color: primaryBGColor,
-            elevation: 0,
-            child: Container(
-              width: 261,
-              margin: EdgeInsets.all(5),
-              decoration: BoxDecoration(
-                color: primaryBGColor,
-                borderRadius: BorderRadius.circular(12),
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    Colors.white70,
-                    Color(Random().nextInt(0xffffffff)),
-                  ],
-                ),
+          child: Container(
+            width: 261,
+            margin: EdgeInsets.all(6),
+            decoration: BoxDecoration(
+              color: primaryBGColor,
+              borderRadius: BorderRadius.circular(12),
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  Colors.white70,
+                  Color(Random().nextInt(0xffffffff)),
+                ],
               ),
-              child: Stack(
-                children: [
-                  Align(
-                    alignment: Alignment.topRight,
-                    child: Container(
-                      margin: EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                            blurRadius: 32,
-                            color: Colors.black.withOpacity(0.05),
-                          ),
-                        ],
+            ),
+            child: Stack(
+              children: [
+                Align(
+                  alignment: Alignment.topRight,
+                  child: Container(
+                    margin: EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          blurRadius: 32,
+                          color: Colors.black.withOpacity(0.05),
+                        ),
+                      ],
+                    ),
+                    child: Icon(
+                      Icons.play_circle_fill,
+                      size: 42,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 38),
+                  child: Align(
+                    alignment: Alignment.topCenter,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(12),
+                      child: Image.network(
+                        course.thumbnail,
+                        height: 150,
+                        width: 150,
+                        fit: BoxFit.fill,
                       ),
-                      child: Icon(
-                        Icons.play_circle_fill,
-                        size: 42,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 170, left: 12, right: 12),
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      course.title,
+                      style: GoogleFonts.montserrat(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 18,
                         color: Colors.white,
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 38),
-                    child: Align(
-                      alignment: Alignment.topCenter,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(12),
-                        child: Image.network(
-                          course.thumbnail,
-                          height: 150,
-                          width: 150,
-                          fit: BoxFit.fill,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 12, bottom: 12),
+                  child: Align(
+                    alignment: Alignment.bottomLeft,
+                    child: Row(
+                      children: [
+                        Container(
+                          height: 30,
+                          width: 30,
+                          child: Icon(
+                            Icons.person_rounded,
+                            color: Colors.white,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Colors.black12,
+                            borderRadius: BorderRadius.circular(45),
+                          ),
                         ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(top: 170, left: 12, right: 12),
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: Text(
-                        course.title,
-                        style: GoogleFonts.getFont(
-                          'Montserrat',
-                          fontWeight: FontWeight.w600,
-                          fontSize: 18,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 12, bottom: 12),
-                    child: Align(
-                      alignment: Alignment.bottomLeft,
-                      child: Row(
-                        children: [
-                          Container(
-                            height: 30,
-                            width: 30,
-                            child: Icon(
-                              Icons.person_rounded,
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10),
+                          child: Text(
+                            course.author,
+                            style: GoogleFonts.montserrat(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 12,
                               color: Colors.white,
                             ),
-                            decoration: BoxDecoration(
-                              color: Colors.black12,
-                              borderRadius: BorderRadius.circular(45),
-                            ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 10),
-                            child: Text(
-                              course.author,
-                              style: GoogleFonts.getFont(
-                                'Montserrat',
-                                fontWeight: FontWeight.w400,
-                                fontSize: 12,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),

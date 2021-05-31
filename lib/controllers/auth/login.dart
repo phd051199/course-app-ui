@@ -34,6 +34,7 @@ class LoginController extends GetxController {
           ? btnEnabled(true)
           : btnEnabled(false);
     } else {
+      usernameInvalidMsg('');
       isUserInvalid(true);
       btnEnabled(false);
     }
@@ -46,6 +47,7 @@ class LoginController extends GetxController {
           ? btnEnabled(true)
           : btnEnabled(false);
     } else {
+      pwdInvalidMsg('');
       isPwdInvalid(true);
       btnEnabled(false);
     }

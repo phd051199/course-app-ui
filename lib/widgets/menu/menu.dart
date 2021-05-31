@@ -11,15 +11,13 @@ class MenuDrawer extends StatelessWidget {
     return Drawer(
       child: Container(
         color: primaryBGColor,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: ListView(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 62, left: 24),
-              child: Text(
+            ListTile(
+              horizontalTitleGap: 0.0,
+              title: Text(
                 'Menu',
-                style: GoogleFonts.getFont(
-                  'Montserrat',
+                style: GoogleFonts.montserrat(
                   fontSize: 24,
                   fontWeight: FontWeight.w600,
                   color: primaryTextColor,
@@ -41,9 +39,7 @@ class MenuDrawer extends StatelessWidget {
             ),
             DrawerListTile(
               title: 'Sign out',
-              onTap: () => Get.offAll(
-                () => LoginScreen(),
-              ),
+              onTap: () => Get.offAll(() => LoginScreen()),
             ),
           ],
         ),

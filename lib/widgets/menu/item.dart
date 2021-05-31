@@ -8,21 +8,17 @@ class DrawerListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return GestureDetector(
       onTap: onTap,
-      child: Padding(
-        padding: const EdgeInsets.only(left: 8),
-        child: ListTile(
-          onTap: menuItemClicked,
-          horizontalTitleGap: 0.0,
-          title: Text(
-            title,
-            style: GoogleFonts.getFont(
-              'Montserrat',
-              fontSize: 20,
-              fontWeight: FontWeight.w400,
-              color: Colors.white,
-            ),
+      child: ListTile(
+        onTap: menuItemClicked,
+        horizontalTitleGap: 0.0,
+        title: Text(
+          title,
+          style: GoogleFonts.montserrat(
+            fontSize: 20,
+            fontWeight: FontWeight.w400,
+            color: Colors.white,
           ),
         ),
       ),
