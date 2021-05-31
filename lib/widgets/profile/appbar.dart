@@ -12,7 +12,7 @@ class ProfileAppBar extends StatelessWidget {
                 image: AssetImage('assets/images/bgprofile.png'),
                 fit: BoxFit.fill,
                 colorBlendMode: BlendMode.darken,
-                color: Color(0xfff2A3447).withOpacity(0.5),
+                color: Color(0xff2A3447).withOpacity(0.5),
               )
             : null,
       ),

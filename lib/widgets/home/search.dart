@@ -1,3 +1,4 @@
+import 'package:course_app/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -11,7 +12,7 @@ class SearchBar extends StatelessWidget {
         height: 48,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: Color(0xffFFF1DC),
+          color: primaryTextColor,
         ),
         child: Row(
           children: [
@@ -19,7 +20,7 @@ class SearchBar extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 18),
               child: Icon(
                 Icons.search,
-                color: Color(0xfff2A3447),
+                color: Color(0xff2A3447),
               ),
             ),
             Expanded(

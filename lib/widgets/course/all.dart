@@ -17,7 +17,7 @@ class CoursesList extends StatelessWidget {
           child: _.isLoading.value
               ? Center(
                   child: CircularProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation<Color>(secondaryColor),
+                    valueColor: AlwaysStoppedAnimation<Color>(secondaryBGColor),
                   ),
                 )
               : ListView.builder(

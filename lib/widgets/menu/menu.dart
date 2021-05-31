@@ -22,7 +22,7 @@ class MenuDrawer extends StatelessWidget {
                   'Montserrat',
                   fontSize: 24,
                   fontWeight: FontWeight.w600,
-                  color: Color(0xffFDF1DE),
+                  color: primaryTextColor,
                 ),
               ),
             ),
