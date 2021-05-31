@@ -4,8 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ProfileBody extends StatelessWidget {
-  const ProfileBody({Key key, this.fullName, this.email}) : super(key: key);
-  final fullName, email;
+  const ProfileBody({
+    Key? key,
+    required this.fullName,
+    required this.email,
+  }) : super(key: key);
+  final String fullName, email;
 
   @override
   Widget build(BuildContext context) {

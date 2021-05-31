@@ -16,9 +16,7 @@ class MyCourseController extends GetxController {
     try {
       isLoading(true);
       final courses = await CourseServices.fetchMyCourses();
-      if (courses != null) {
-        courseList.value = courses;
-      }
+      courseList.value = courses;
     } finally {
       isLoading(false);
     }

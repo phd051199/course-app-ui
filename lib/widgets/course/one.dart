@@ -8,7 +8,9 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CourseCard extends StatelessWidget {
-  const CourseCard(this.course);
+  const CourseCard({
+    required this.course,
+  });
   final Course course;
 
   @override

@@ -9,7 +9,7 @@ void main() {
 
 class CourseApp extends StatelessWidget {
   const CourseApp({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override

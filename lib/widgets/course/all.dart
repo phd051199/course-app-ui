@@ -24,7 +24,7 @@ class CoursesList extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   itemCount: _.courseList.length,
                   itemBuilder: (context, index) =>
-                      CourseCard(_.courseList[index]),
+                      CourseCard(course: _.courseList[index]),
                 ),
         ),
       )),

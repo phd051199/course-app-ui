@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class MainTitle extends StatelessWidget {
-  const MainTitle({this.title});
+  const MainTitle({
+    required this.title,
+  });
 
   final String title;
   @override

@@ -15,6 +15,7 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     TextEditingController usernameInputController = TextEditingController();
     TextEditingController passwordInputController = TextEditingController();
+
     return Scaffold(
       appBar: AppBar(),
       body: Padding(
@@ -176,7 +177,7 @@ class LoginScreen extends StatelessWidget {
 
 class RememberCheckbox extends StatelessWidget {
   const RememberCheckbox({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -224,10 +225,10 @@ class RememberCheckbox extends StatelessWidget {
 
 class DividerText extends StatelessWidget {
   const DividerText({
-    Key key,
-    this.text,
+    Key? key,
+    required this.text,
   }) : super(key: key);
-  final text;
+  final String text;
 
   @override
   Widget build(BuildContext context) {

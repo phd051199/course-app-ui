@@ -10,8 +10,8 @@ String loginToJson(Login data) => json.encode(data.toJson());
 
 class Login {
   Login({
-    this.message,
-    this.token,
+    required this.message,
+    required this.token,
   });
 
   String message;

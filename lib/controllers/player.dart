@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
 
 class PlayerController extends GetxController {
-  FlickManager flickManager;
+  late FlickManager flickManager;
   final String videoLink;
 
   PlayerController(this.videoLink);

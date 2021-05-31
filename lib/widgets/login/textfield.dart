@@ -4,16 +4,21 @@ import 'package:google_fonts/google_fonts.dart';
 
 class AuthInput extends StatelessWidget {
   const AuthInput({
-    Key key,
-    this.label,
+    Key? key,
+    required this.label,
+    required this.onChanged,
+    required this.isInvalid,
+    required this.inputController,
     this.isPwdField,
-    this.onChanged,
-    this.isInvalid,
-    this.inputController,
     this.errorText,
   }) : super(key: key);
-  final label, isPwdField, isInvalid, inputController, errorText;
-  final Function onChanged;
+
+  final String label;
+  final bool isInvalid;
+  final TextEditingController inputController;
+  final bool? isPwdField;
+  final String? errorText;
+  final Function(String) onChanged;
 
   @override
   Widget build(BuildContext context) {
