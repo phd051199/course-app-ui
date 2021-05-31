@@ -1,6 +1,6 @@
 import 'package:course_app/controllers/auth/login.dart';
 import 'package:course_app/controllers/checkbox.dart';
-import 'package:course_app/screens/forgotpwd.dart';
+import 'package:course_app/screens/forgot_pass.dart';
 import 'package:course_app/screens/register.dart';
 import 'package:course_app/services/auth.dart';
 import 'package:course_app/utils/constants.dart';

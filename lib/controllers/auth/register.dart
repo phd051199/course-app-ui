@@ -1,5 +1,4 @@
 import 'package:course_app/screens/success.dart';
-import 'package:course_app/utils/validation.dart';
 import 'package:get/get.dart';
 
 class RegisterController extends GetxController {
@@ -39,7 +38,7 @@ class RegisterController extends GetxController {
   }
 
   void inputUsernameOnchanged(text) {
-    if (Validation.validateUsername(text)) {
+    if (GetUtils.isUsername(text)) {
       isUserInvalid(false);
       checkAll();
     } else {
@@ -59,7 +58,7 @@ class RegisterController extends GetxController {
   }
 
   void inputEmailOnchanged(text) {
-    if (Validation.validateEmail(text)) {
+    if (GetUtils.isEmail(text)) {
       isEmailInvalid(false);
       checkAll();
     } else {
@@ -68,8 +67,18 @@ class RegisterController extends GetxController {
     }
   }
 
+  void inputEmailFGOnchanged(text) {
+    if (GetUtils.isEmail(text)) {
+      isEmailInvalid(false);
+      btnEnabled(true);
+    } else {
+      isEmailInvalid(true);
+      btnEnabled(false);
+    }
+  }
+
   void inputPasswordOnchanged(text) {
-    if (Validation.validatePassword(text)) {
+    if (GetUtils.isPassport(text)) {
       isPwdInvalid(false);
       checkAll();
     } else {

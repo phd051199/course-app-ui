@@ -1,5 +1,4 @@
 import 'package:course_app/screens/home.dart';
-import 'package:course_app/utils/validation.dart';
 import 'package:get/get.dart';
 
 class LoginController extends GetxController {
@@ -29,7 +28,7 @@ class LoginController extends GetxController {
   }
 
   void inputUsernameOnchanged(text) {
-    if (Validation.validateUsername(text) || Validation.validateEmail(text)) {
+    if (GetUtils.isUsername(text) || GetUtils.isEmail(text)) {
       isUserInvalid(false);
       !isUserInvalid.value && !isPwdInvalid.value
           ? btnEnabled(true)
@@ -41,7 +40,7 @@ class LoginController extends GetxController {
   }
 
   void inputPasswordOnchanged(text) {
-    if (Validation.validatePassword(text)) {
+    if (GetUtils.isPassport(text)) {
       isPwdInvalid(false);
       !isUserInvalid.value && !isPwdInvalid.value
           ? btnEnabled(true)
