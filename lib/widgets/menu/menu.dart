@@ -27,19 +27,19 @@ class MenuDrawer extends StatelessWidget {
             SizedBox(height: 24),
             DrawerListTile(
               title: 'Home',
-              onTap: () {},
+              menuItemClicked: () {},
             ),
             DrawerListTile(
               title: 'My Courses',
-              onTap: () {},
+              menuItemClicked: () {},
             ),
             DrawerListTile(
               title: 'Setting',
-              onTap: () {},
+              menuItemClicked: () {},
             ),
             DrawerListTile(
+              menuItemClicked: () => Get.offAll(() => LoginScreen()),
               title: 'Sign out',
-              onTap: () => Get.offAll(() => LoginScreen()),
             ),
           ],
         ),

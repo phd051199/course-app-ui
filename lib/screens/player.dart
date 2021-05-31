@@ -9,7 +9,10 @@ import 'package:google_fonts/google_fonts.dart';
 import '../utils/constants.dart';
 
 class PlayerScreen extends StatelessWidget {
-  PlayerScreen({this.videoLink, this.title});
+  PlayerScreen({
+    required this.videoLink,
+    required this.title,
+  });
   final String videoLink, title;
 
   @override
@@ -139,11 +142,12 @@ class PlayerScreen extends StatelessWidget {
 
 class SubTitle extends StatelessWidget {
   const SubTitle({
-    Key key,
-    this.time,
-    this.sub,
+    Key? key,
+    required this.time,
+    required this.sub,
   }) : super(key: key);
   final String time, sub;
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -173,7 +177,7 @@ class SubTitle extends StatelessWidget {
 
 class LanguageDropdown extends StatelessWidget {
   const LanguageDropdown({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -208,7 +212,7 @@ class LanguageDropdown extends StatelessWidget {
             value: 2,
           ),
         ],
-        onChanged: (value) {},
+        onChanged: (dynamic value) {},
       ),
     );
   }
@@ -216,12 +220,12 @@ class LanguageDropdown extends StatelessWidget {
 
 class ControllerButton extends StatelessWidget {
   const ControllerButton({
-    Key key,
-    this.icon,
-    this.onControllerPress,
+    Key? key,
+    required this.icon,
+    required this.onControllerPress,
   }) : super(key: key);
   final IconData icon;
-  final Function onControllerPress;
+  final Function() onControllerPress;
 
   @override
   Widget build(BuildContext context) {
@@ -244,9 +248,9 @@ class ControllerButton extends StatelessWidget {
 
 class ReactButton extends StatelessWidget {
   const ReactButton({
-    Key key,
-    this.count,
-    this.icon,
+    Key? key,
+    required this.count,
+    required this.icon,
   }) : super(key: key);
   final int count;
   final IconData icon;
@@ -265,7 +269,7 @@ class ReactButton extends StatelessWidget {
             width: 6.45,
           ),
           Text(
-            '$count' ?? '0',
+            '$count',
             style: GoogleFonts.montserrat(
               fontWeight: FontWeight.w400,
               fontSize: 14,

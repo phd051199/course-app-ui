@@ -67,10 +67,10 @@ class PlayerControls extends StatelessWidget {
                                   vertical: 8,
                                 ),
                                 getPlayedPaint: ({
-                                  double handleRadius,
-                                  double height,
-                                  double playedPart,
-                                  double width,
+                                  double? handleRadius,
+                                  double? height,
+                                  double? playedPart,
+                                  double? width,
                                 }) {
                                   return Paint()
                                     ..shader = LinearGradient(colors: [
@@ -82,7 +82,7 @@ class PlayerControls extends StatelessWidget {
                                     ]).createShader(
                                       Rect.fromPoints(
                                         Offset(0, 0),
-                                        Offset(width, 0),
+                                        Offset(width!, 0),
                                       ),
                                     );
                                 },

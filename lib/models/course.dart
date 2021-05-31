@@ -12,11 +12,11 @@ String courseToJson(List<Course> data) =>
 
 class Course {
   Course({
-    this.id,
-    this.title,
-    this.author,
-    this.videoLink,
-    this.thumbnail,
+    required this.id,
+    required this.title,
+    required this.author,
+    required this.videoLink,
+    required this.thumbnail,
   });
 
   String id;

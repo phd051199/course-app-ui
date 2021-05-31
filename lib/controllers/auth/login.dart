@@ -16,7 +16,7 @@ class LoginController extends GetxController {
     if (msg == 'Invalid Username') {
       isUserInvalid(true);
       usernameInvalidMsg('this account does not exists');
-      pwdInvalidMsg(null);
+      pwdInvalidMsg('');
     } else if (msg == 'Invalid Password') {
       isPwdInvalid(true);
       pwdInvalidMsg('invalid password');

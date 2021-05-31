@@ -3,14 +3,19 @@ import 'package:google_fonts/google_fonts.dart';
 
 class AuthButton extends StatelessWidget {
   const AuthButton({
-    Key key,
-    this.btnLabel,
-    this.onPressed,
-    this.btnColor,
-    this.textColor,
+    Key? key,
+    required this.btnLabel,
+    required this.onPressed,
+    required this.btnColor,
+    required this.textColor,
     this.icon,
   }) : super(key: key);
-  final btnLabel, onPressed, btnColor, textColor, icon;
+
+  final String btnLabel;
+  final Function()? onPressed;
+  final Color btnColor;
+  final Color textColor;
+  final icon;
 
   @override
   Widget build(BuildContext context) {

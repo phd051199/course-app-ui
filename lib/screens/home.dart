@@ -25,7 +25,7 @@ class HomeScreen extends StatelessWidget {
               'assets/images/menu.png',
             ),
           ),
-          onPressed: () => scaffoldKey.currentState.openDrawer(),
+          onPressed: () => scaffoldKey.currentState!.openDrawer(),
         ),
         title: Text(
           'Hi, ${loginController.currentUser.value} 👋',
