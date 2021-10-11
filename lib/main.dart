@@ -22,7 +22,6 @@ class CourseApp extends StatelessWidget {
         appBarTheme: AppBarTheme(
           elevation: 0,
           backgroundColor: primaryBGColor,
-          brightness: Brightness.dark,
         ),
       ),
       home: LoginScreen(),

@@ -4,6 +4,7 @@ import 'package:course_app/controllers/auth/login.dart';
 import 'package:course_app/models/login.dart';
 import 'package:course_app/models/register.dart';
 import 'package:get/get.dart';
+import 'package:course_app/utils/constants.dart';
 import 'package:http/http.dart' as http;
 
 class AuthServices {
@@ -19,7 +20,7 @@ class AuthServices {
     Function onError,
   ) async {
     final response = await client.post(
-      Uri.parse('https://api.phamduy.host/register'),
+      Uri.parse('$apiURL/register'),
       headers: {
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -48,7 +49,7 @@ class AuthServices {
     Function onError,
   ) async {
     final response = await client.post(
-        Uri.parse('https://api.phamduy.host/login'),
+        Uri.parse('$apiURL/login'),
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
         },
