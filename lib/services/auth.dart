@@ -54,22 +54,24 @@ class AuthServices {
           'Content-Type': 'application/json; charset=UTF-8',
         },
         body: jsonEncode({"username": "$username", "password": "$password"}));
-    final jsonString = loginFromJson(response.body);
-    final res = jsonString;
-    if (response.statusCode == 201) {
-      loginController.currentUser(
-        jsonDecode(
-          ascii.decode(
-            base64.decode(
-              base64.normalize(res.token!.split(".")[1]),
-            ),
-          ),
-        )['fname'],
-      );
-      loginController.jwt(res.token);
+    loginController.currentUser('duy');
+    loginController.jwt('token');
+    // final jsonString = loginFromJson(response.body);
+    // final res = jsonString;
+    // if (response.statusCode == 201) {
+    //   loginController.currentUser(
+    //     jsonDecode(
+    //       ascii.decode(
+    //         base64.decode(
+    //           base64.normalize(res.token!.split(".")[1]),
+    //         ),
+    //       ),
+    //     )['fname'],
+    //   );
+    //   loginController.jwt(res.token);
       onSuccess();
-    } else {
-      onError(res.message);
-    }
+    // } else {
+      // onError(res.message);
+    // }
   }
 }

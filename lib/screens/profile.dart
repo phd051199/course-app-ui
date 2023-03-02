@@ -17,7 +17,7 @@ class ProfileScreen extends StatelessWidget {
           ProfileAppBar(),
           ProfileBody(
             fullName: fullName,
-            email: '@chauOngDev',
+            email: 'phd051199@gmail.com',
           ),
         ],
       ),
